@@ -1,6 +1,6 @@
 # Mockatoo examples
 
-Example applications and authentication configurations for [Mockatoo](https://mockatoo.com).
+Example applications and authentication configurations for [Mockatoo](https://mockatoo.globalunderdog.com).
 
 - [Better Auth + Next.js](better-auth-next/): a runnable sign-in app.
 - [Authentication configurations](configurations/): Better Auth and Auth.js setups for SaaS, B2B, connected accounts, and other use cases.
