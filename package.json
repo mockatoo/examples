@@ -1,0 +1,20 @@
+{
+	"name": "mockatoo-examples",
+	"private": true,
+	"type": "module",
+	"engines": {
+		"node": "24"
+	},
+	"packageManager": "pnpm@10.15.0",
+	"scripts": {
+		"lint": "biome check better-auth-next configurations package.json",
+		"typecheck": "pnpm -r typecheck",
+		"build": "pnpm -r build",
+		"dev": "pnpm --dir better-auth-next dev"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.5.14",
+		"@types/node": "^22.20.2",
+		"typescript": "^5.9.2"
+	}
+}

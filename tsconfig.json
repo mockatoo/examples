@@ -1,0 +1,12 @@
+{
+	"compilerOptions": {
+		"strict": true,
+		"skipLibCheck": true,
+		"target": "ES2022",
+		"module": "ESNext",
+		"moduleResolution": "Bundler",
+		"esModuleInterop": true,
+		"noEmit": true
+	},
+	"include": ["better-auth-next", "configurations"]
+}
