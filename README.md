@@ -29,7 +29,7 @@ Example applications and authentication configurations for [Mockatoo](https://mo
 Use Node.js 24 and pnpm 10:
 
 ```sh
-pnpm install --no-frozen-lockfile
+pnpm install
 MOCKATOO_URL=https://app.mockatoo.globalunderdog.com pnpm dev
 ```
 
@@ -39,8 +39,8 @@ for environment variables.
 
 Connectors are installed from `github:mockatoo/connectors#main`, using
 `@mockatoo/connectors/better-auth` and `@mockatoo/connectors/authjs`. They are not
-published to npm yet. This repository temporarily follows GitHub `main` without
-a committed lockfile; installations resolve the latest exported connectors.
+published to npm yet. The committed lockfile pins a connectors commit; run
+`pnpm update @mockatoo/connectors` to move to the latest exported connectors.
 
 Run `pnpm lint`, `pnpm typecheck`, and `pnpm build` to validate the examples.
 Connector source, documentation, and the agent skill live in
