@@ -19,4 +19,11 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm lint
       - run: pnpm typecheck
+      - name: Generate runtime secret
+        run: echo "AUTH_SECRET=$(openssl rand -base64 32)" >> "$GITHUB_ENV"
       - run: pnpm build
+      - run: pnpm --dir authjs-next exec playwright install --with-deps chromium
+      - run: pnpm --dir authjs-next test
+        env:
+          MOCK_EMAIL: ${{ secrets.MOCK_EMAIL }}
+          MOCK_PASSWORD: ${{ secrets.MOCK_PASSWORD }}

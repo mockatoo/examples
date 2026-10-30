@@ -7,7 +7,7 @@
 	},
 	"packageManager": "pnpm@10.15.0",
 	"scripts": {
-		"lint": "biome check better-auth-next configurations package.json",
+		"lint": "biome check authjs-next better-auth-next configurations package.json",
 		"typecheck": "pnpm -r typecheck",
 		"build": "pnpm -r build",
 		"dev": "pnpm --dir better-auth-next dev"
