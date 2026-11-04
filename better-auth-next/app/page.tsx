@@ -1,6 +1,5 @@
 import { headers } from "next/headers";
 import { auth } from "../lib/auth";
-import { providers } from "../lib/providers";
 import SignIn from "./sign-in";
 
 export default async function Page({
