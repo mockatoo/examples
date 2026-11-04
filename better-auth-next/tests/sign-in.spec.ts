@@ -4,6 +4,11 @@ import { expect, test } from "@playwright/test";
 nextEnv.loadEnvConfig(process.cwd());
 const email = process.env.MOCK_EMAIL;
 const password = process.env.MOCK_PASSWORD;
+const taggedEmail = (tag: number) => {
+	const base = email as string;
+	const at = base.lastIndexOf("@");
+	return `${base.slice(0, at)}+${tag}${base.slice(at)}`;
+};
 
 test.beforeEach(() => {
 	if (!email || !password)
@@ -12,7 +17,7 @@ test.beforeEach(() => {
 		);
 });
 
-for (const provider of [
+for (const [index, provider] of [
 	"Apple",
 	"Google",
 	"GitHub",
@@ -21,13 +26,13 @@ for (const provider of [
 	"LinkedIn",
 	"Microsoft",
 	"X",
-] as const) {
+].entries()) {
 	test(`sign in with ${provider}`, async ({ page }) => {
 		await page.goto("/");
 		await page
 			.getByRole("button", { name: `Sign in with ${provider}` })
 			.click();
-		await page.locator("#email").fill(email as string);
+		await page.locator("#email").fill(taggedEmail(index + 1));
 		await page.locator("#password").fill(password as string);
 		await page.getByRole("button", { name: "Log in with password" }).click();
 		await page.getByRole("button", { name: "Authorize" }).click();
