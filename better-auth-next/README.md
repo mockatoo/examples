@@ -21,7 +21,7 @@
 
 # Better Auth + Next.js
 
-A small App Router sign-in app using Better Auth’s cookie session and Mockatoo’s generic OAuth connector. Auth setup lives in `lib/auth.ts`; no database or in-memory auth state is used.
+A small App Router sign-in app using Better Auth’s cookie session and Mockatoo’s simulated Apple, Google, GitHub, Discord, Facebook, LinkedIn, Microsoft, and X providers. Auth setup lives in `lib/auth.ts`; no database or in-memory auth state is used.
 
 ## Run locally
 
@@ -48,4 +48,4 @@ Deploy this directory to Vercel. Set `BETTER_AUTH_SECRET` in the Production and 
 
 ## Before production
 
-Mockatoo is for development and testing, not production authentication. Remove `MOCKATOO_URL` and the Mockatoo plugin, then configure Better Auth with your production OAuth provider and a persistent database. Add the provider credentials and database settings as deployment secrets, and register the callback URL for your domain with that provider.
+Mockatoo is for development and testing, not production authentication. Remove `MOCKATOO_URL` to activate the real Better Auth provider configuration in `lib/auth.ts`. Register each OAuth application with its provider and use the callback URL `https://<your-domain>/api/auth/callback/<provider-id>`. Set the corresponding `*_CLIENT_ID` and `*_CLIENT_SECRET` deployment variables: `APPLE`, `GOOGLE`, `GITHUB`, `DISCORD`, `FACEBOOK`, `LINKEDIN`, `MICROSOFT`, and `TWITTER`. Apple requires its provider-specific signed client secret. Microsoft is configured for the `common` tenant. Configure only providers for which you have credentials, and remove unused providers and buttons.
