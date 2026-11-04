@@ -23,6 +23,8 @@
 
 A small App Router sign-in app using Better Auth’s cookie session and Mockatoo’s simulated Apple, Google, GitHub, Discord, Facebook, LinkedIn, Microsoft, and X providers. Auth setup lives in `lib/auth.ts`; no database or in-memory auth state is used.
 
+Live demo: [Better Auth + Next.js](https://mockatoo-better-auth-next.vercel.app).
+
 ## Run locally
 
 Use Node.js 24 and pnpm 10. Create a test account at [Mockatoo](https://app.mockatoo.globalunderdog.com), then create `.env.local`:

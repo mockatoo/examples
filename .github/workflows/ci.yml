@@ -34,3 +34,8 @@ jobs:
         env:
           MOCK_EMAIL: ${{ secrets.MOCK_EMAIL }}
           MOCK_PASSWORD: ${{ secrets.MOCK_PASSWORD }}
+      - run: pnpm --dir better-auth-sveltekit exec playwright install --with-deps chromium
+      - run: pnpm --dir better-auth-sveltekit test
+        env:
+          MOCK_EMAIL: ${{ secrets.MOCK_EMAIL }}
+          MOCK_PASSWORD: ${{ secrets.MOCK_PASSWORD }}

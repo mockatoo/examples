@@ -12,6 +12,8 @@
 			"!!**/node_modules",
 			"!!**/.next",
 			"!!**/.next-dev",
+			"!!**/.svelte-kit",
+			"!!**/.vercel",
 			"!!**/dist",
 			"!!**/build",
 			"!!**/.turbo",

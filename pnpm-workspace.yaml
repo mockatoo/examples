@@ -1,4 +1,5 @@
 packages:
   - authjs-next
   - better-auth-next
+  - better-auth-sveltekit
   - configurations
