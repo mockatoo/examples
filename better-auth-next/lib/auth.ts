@@ -1,31 +1,17 @@
-import { createSaasAuth } from "../../configurations/saas";
+import { createMockatooPlugin } from "@mockatoo/connect-better-auth";
+import { betterAuth } from "better-auth";
 
-/**
- * This example uses the same Better Auth setup shown in the configuration
- * examples, with mock credentials supplied for local development.
- */
-function createAuth() {
-	const origin =
-		process.env.MOCKATOO_URL ??
-		`https://localhost:${process.env.MOCKATOO_PORT || "4001"}`;
-	const { auth } = createSaasAuth({
-		baseURL:
-			process.env.EXAMPLE_URL ??
-			`https://localhost:${process.env.EXAMPLE_PORT || "4002"}`,
-		secret:
-			process.env.BETTER_AUTH_SECRET ??
-			"example-only-auth-secret-at-least-32-characters",
-		mock: { origin },
-		// This demo has no mailer; the verification link only appears in the log.
-		sendEmail: async (email) =>
-			console.log(`[email to ${email.to}] ${email.text}`),
-	});
-	return auth;
+const secret = process.env.BETTER_AUTH_SECRET;
+if (!secret) {
+	throw new Error(
+		"BETTER_AUTH_SECRET is required. Set it in .env.local or your deployment environment.",
+	);
 }
-const state = globalThis as typeof globalThis & {
-	exampleAuth?: ReturnType<typeof createAuth>;
-};
-export function getAuth() {
-	state.exampleAuth ??= createAuth();
-	return state.exampleAuth;
-}
+
+const origin = process.env.MOCKATOO_URL;
+
+export const auth = betterAuth({
+	baseURL: { allowedHosts: ["localhost:*", "*.vercel.app"] },
+	secret,
+	plugins: origin ? [createMockatooPlugin({ origin })] : [],
+});
