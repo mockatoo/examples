@@ -21,7 +21,10 @@ for (const decision of ["Authorize", "Deny"] as const) {
 		await page.getByRole("button", { name: "Log in with password" }).click();
 		await page.getByRole("button", { name: decision }).click();
 		if (decision === "Deny") {
-			await expect(page.getByRole("alert")).toContainText(/^Sign-in failed/);
+			// Next.js's route announcer is an alert too.
+			await expect(
+				page.getByRole("alert").filter({ hasText: /^Sign-in failed/ }),
+			).toBeVisible();
 			return;
 		}
 		await expect(page.getByText(email as string)).toBeVisible();
