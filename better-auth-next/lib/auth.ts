@@ -22,6 +22,21 @@ const mockOrigin = process.env.MOCKATOO_URL;
 export const auth = betterAuth({
 	baseURL: { allowedHosts: ["localhost:*", "*.vercel.app"] },
 	secret,
+	account: {
+		accountLinking: {
+			enabled: true,
+			trustedProviders: [
+				"apple",
+				"google",
+				"github",
+				"discord",
+				"facebook",
+				"linkedin",
+				"microsoft",
+				"twitter",
+			],
+		},
+	},
 	rateLimit: {
 		customRules: {
 			"/sign-in/social": { window: 10, max: 30 },
