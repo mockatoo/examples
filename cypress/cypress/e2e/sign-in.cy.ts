@@ -1,14 +1,9 @@
-let email = "";
-let password = "";
+type Credentials = { MOCK_EMAIL?: string; MOCK_PASSWORD?: string };
+const credentialKeys = ["MOCK_EMAIL", "MOCK_PASSWORD"];
 
 beforeEach(() => {
-	cy.env<{ MOCK_EMAIL?: string; MOCK_PASSWORD?: string }>([
-		"MOCK_EMAIL",
-		"MOCK_PASSWORD",
-	]).then(({ MOCK_EMAIL, MOCK_PASSWORD }) => {
-		email = MOCK_EMAIL ?? "";
-		password = MOCK_PASSWORD ?? "";
-		if (!email || !password)
+	cy.env<Credentials>(credentialKeys).then(({ MOCK_EMAIL, MOCK_PASSWORD }) => {
+		if (!MOCK_EMAIL || !MOCK_PASSWORD)
 			throw new Error("Set CYPRESS_MOCK_EMAIL and CYPRESS_MOCK_PASSWORD.");
 	});
 });
@@ -16,15 +11,19 @@ beforeEach(() => {
 it("signs in with Google", () => {
 	cy.visit("/");
 	cy.contains("button", "Sign in with Google").click();
-	cy.origin(
-		Cypress.expose("MOCKATOO_URL"),
-		{ args: { email, password } },
-		({ email, password }) => {
-			cy.get("#email").type(email);
-			cy.get("#password").type(password, { log: false });
-			cy.contains("button", "Log in with password").click();
-			cy.contains("button", "Authorize").click();
-		},
-	);
+	cy.env<Credentials>(credentialKeys).then(({ MOCK_EMAIL, MOCK_PASSWORD }) => {
+		const email = MOCK_EMAIL as string;
+		const password = MOCK_PASSWORD as string;
+		cy.origin(
+			Cypress.expose("MOCKATOO_URL"),
+			{ args: { email, password } },
+			({ email, password }) => {
+				cy.get("#email").type(email);
+				cy.get("#password").type(password, { log: false });
+				cy.contains("button", "Log in with password").click();
+				cy.contains("button", "Authorize").click();
+			},
+		);
+	});
 	cy.contains("h1", "Your session").should("be.visible");
 });
