@@ -3,3 +3,4 @@ packages:
   - better-auth-next
   - better-auth-sveltekit
   - configurations
+  - cypress
