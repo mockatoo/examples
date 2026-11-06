@@ -12,7 +12,7 @@ test.beforeEach(() => {
 
 test("sign in, see the account email, and sign out", async ({ page }) => {
 	await page.goto("/");
-	await page.getByRole("button", { name: "Sign in", exact: true }).click();
+	await page.getByRole("button", { name: "Sign in" }).click();
 	await page.locator("#email").fill(email as string);
 	await page.locator("#password").fill(password as string);
 	await page.getByRole("button", { name: "Log in with password" }).click();
@@ -22,14 +22,12 @@ test("sign in, see the account email, and sign out", async ({ page }) => {
 	).toBeVisible();
 	await expect(page.locator(".email")).toHaveText(email as string);
 	await page.getByRole("button", { name: "Sign out" }).click();
-	await expect(
-		page.getByRole("button", { name: "Sign in", exact: true }),
-	).toBeVisible();
+	await expect(page.getByRole("button", { name: "Sign in" })).toBeVisible();
 });
 
 test("show an error when consent is denied", async ({ page }) => {
 	await page.goto("/");
-	await page.getByRole("button", { name: "Sign in", exact: true }).click();
+	await page.getByRole("button", { name: "Sign in" }).click();
 	await page.locator("#email").fill(email as string);
 	await page.locator("#password").fill(password as string);
 	await page.getByRole("button", { name: "Log in with password" }).click();

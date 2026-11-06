@@ -1,0 +1,34 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, -apple-system, sans-serif; color: #202a37; background: #f4f5f2; }
+main { min-height: 100vh; display: grid; place-items: center; padding: 1.5rem; background: radial-gradient(ellipse at 50% 0, #e4ede7, transparent 65%); }
+.card { width: min(100%, 27rem); padding: 3rem; background: #fff; border: 1px solid #e3e8e3; border-radius: 1rem; box-shadow: 0 18px 55px #233b2e12; }
+.brand { display: flex; align-items: center; gap: .65rem; margin-bottom: 3rem; font-size: 1.1rem; font-weight: 750; letter-spacing: -.03em; }
+h1 { font-size: 1.9rem; letter-spacing: -.04em; margin: 0 0 .65rem; }
+p { line-height: 1.6; color: #63716a; margin: 0 0 1.8rem; }
+button { width: 100%; background: #204f3d; color: white; border: 0; border-radius: .55rem; padding: .9rem 1.2rem; font: inherit; font-weight: 650; cursor: pointer; }
+button:hover { background: #163c2e; }
+button:disabled { opacity: .6; cursor: wait; }
+button:focus-visible { outline: 3px solid #78af92; outline-offset: 3px; }
+.error { color: #9f3030; background: #fdf1ef; border: 1px solid #f2d6d1; padding: .8rem 1rem; border-radius: .5rem; }
+@media (max-width: 480px) { .card { padding: 2rem; } }
+.providers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.provider button { background: white; color: #204f3d; border: 1px solid #c9d8ce; padding: .75rem .45rem; font-size: .9rem; }
+.provider button:hover { background: #edf4ef; }
+.card { width: min(100%, 39rem); }
+.brand { margin-bottom: 2rem; }
+@media (max-width: 400px) { .providers { grid-template-columns: 1fr; } }
+
+.brand { display: inline-flex; color: #204f3d; text-decoration: none; }
+.brand-logo { width: 36px; height: 36px; flex: none; background: currentColor; mask: url("/mockatoo-logo.png") center / contain no-repeat; }
+.secondary { background: white; color: #204f3d; border: 1px solid #c9d8ce; }
+.secondary:hover { background: #edf4ef; }
+.brand:hover { text-decoration: underline; }
+.provider button { display: flex; align-items: center; justify-content: center; gap: .6rem; }
+.provider svg { width: 1.1rem; height: 1.1rem; flex: none; }
+.session-title { font-size: 1.25rem; margin: 2rem 0 .8rem; }
+.session-json { overflow: auto; max-height: 24rem; padding: 1rem; border-radius: .6rem; background: #f2f6f3; color: #253b2d; font-size: .8rem; line-height: 1.5; }
+.cta { display: block; margin: 1.5rem 0 .75rem; padding: .9rem 1.2rem; text-align: center; text-decoration: none; color: white; background: #204f3d; border-radius: .55rem; font-weight: 650; }
+.cta:hover { background: #163c2e; }
+a:focus-visible { outline: 3px solid #78af92; outline-offset: 3px; }
+
+.signed-in { color: #202a37; font-weight: 650; margin: 0; }

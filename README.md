@@ -13,10 +13,6 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/mockatoo/examples/actions/workflows/ci.yml"><img src="https://github.com/mockatoo/examples/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
-</p>
-
-<p align="center">
   <a href="https://mockatoo.globalunderdog.com">Website</a> ·
   <a href="https://mockatoo.globalunderdog.com/docs">Documentation</a> ·
   <a href="https://github.com/mockatoo/connectors">Connectors</a> ·
@@ -27,6 +23,7 @@
 
 Example applications and authentication configurations for [Mockatoo](https://mockatoo.globalunderdog.com).
 
+- [Auth.js + Nuxt 3](authjs-nuxt/): JWT sessions with Auth.js core and Nuxt server routes.
 - [Auth.js + Next.js](authjs-next/): JWT sessions with Auth.js.
 - [Better Auth + Next.js](better-auth-next/): cookie-based sessions with Better Auth’s generic OAuth connector.
 - [Better Auth + SvelteKit](better-auth-sveltekit/): cookie-based sessions with Better Auth’s provider-shaped Mockatoo connectors.

@@ -39,3 +39,8 @@ jobs:
         env:
           MOCK_EMAIL: ${{ secrets.MOCK_EMAIL }}
           MOCK_PASSWORD: ${{ secrets.MOCK_PASSWORD }}
+      - run: pnpm --dir authjs-nuxt exec playwright install --with-deps chromium
+      - run: pnpm --dir authjs-nuxt test
+        env:
+          MOCK_EMAIL: ${{ secrets.MOCK_EMAIL }}
+          MOCK_PASSWORD: ${{ secrets.MOCK_PASSWORD }}

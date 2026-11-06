@@ -11,6 +11,8 @@
 			"**/*.{js,jsx,ts,tsx,json,jsonc}",
 			"!!**/node_modules",
 			"!!**/.next",
+			"!!**/.nuxt",
+			"!!**/.output",
 			"!!**/.next-dev",
 			"!!**/.svelte-kit",
 			"!!**/.vercel",

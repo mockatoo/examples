@@ -1,6 +1,6 @@
 packages:
   - authjs-next
+  - authjs-nuxt
   - better-auth-next
   - better-auth-sveltekit
   - configurations
-  - cypress
