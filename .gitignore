@@ -5,3 +5,5 @@ dist/
 coverage/
 .vercel
 .env.local
+cypress/cypress/screenshots/
+cypress/cypress/videos/
