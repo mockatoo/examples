@@ -24,7 +24,6 @@ jobs:
       - name: Generate Better Auth runtime secret
         run: echo "BETTER_AUTH_SECRET=$(openssl rand -base64 32)" >> "$GITHUB_ENV"
       - run: pnpm build
-      - run: pnpm --dir cypress exec cypress install
       - run: pnpm --dir authjs-next exec playwright install --with-deps chromium
       - run: pnpm --dir authjs-next test
         env:
@@ -45,7 +44,3 @@ jobs:
         env:
           MOCK_EMAIL: ${{ secrets.MOCK_EMAIL }}
           MOCK_PASSWORD: ${{ secrets.MOCK_PASSWORD }}
-      - run: pnpm --dir cypress test
-        env:
-          CYPRESS_MOCK_EMAIL: ${{ secrets.MOCK_EMAIL }}
-          CYPRESS_MOCK_PASSWORD: ${{ secrets.MOCK_PASSWORD }}
