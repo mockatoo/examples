@@ -10,7 +10,7 @@ import {
 	MockGitHub,
 	MockGoogle,
 	MockMicrosoftEntraID,
-} from "@mockatoo/connectors/authjs";
+} from "@mockatoo/connect-authjs";
 import GitHub from "next-auth/providers/github";
 import Google from "next-auth/providers/google";
 import MicrosoftEntraID from "next-auth/providers/microsoft-entra-id";

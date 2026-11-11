@@ -22,13 +22,13 @@ importers:
     dependencies:
       '@mockatoo/connect-authjs':
         specifier: ^0.1.1
-        version: 0.1.1(next-auth@5.0.0-beta.32(next@16.4.3(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1))
+        version: 0.1.1(next-auth@5.0.0-beta.32(next@16.4.3(@babel/core@7.29.13)(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1))
       next:
         specifier: ^16.0.0
         version: 16.4.3(@babel/core@7.29.13)(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       next-auth:
         specifier: 5.0.0-beta.32
-        version: 5.0.0-beta.32(next@16.4.3(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)
+        version: 5.0.0-beta.32(next@16.4.3(@babel/core@7.29.13)(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)
       react:
         specifier: ^19.2.0
         version: 19.3.1
@@ -62,10 +62,10 @@ importers:
         version: 0.41.3
       '@mockatoo/connect-authjs':
         specifier: ^0.1.1
-        version: 0.1.1(next-auth@5.0.0-beta.32(next@16.4.3(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1))
+        version: 0.1.1(next-auth@5.0.0-beta.32(next@16.4.3(@babel/core@7.29.13)(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1))
       next-auth:
         specifier: 5.0.0-beta.32
-        version: 5.0.0-beta.32(next@16.4.3(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)
+        version: 5.0.0-beta.32(next@16.4.3(@babel/core@7.29.13)(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)
       nuxt:
         specifier: ^3.21.0
         version: 3.21.11(@biomejs/biome@2.6.4)(@oxc-project/types@0.143.0)(@types/node@24.19.2)(@vue/compiler-sfc@3.5.45)(bare-buffer@3.7.1)(cac@6.7.14)(confbox@0.3.2)(db0@0.3.4)(dotenv@17.4.2)(esbuild@0.28.2)(giget@3.3.1)(ioredis@5.11.1)(magicast@0.5.5)(rollup-plugin-visualizer@7.1.2(rollup@4.67.4))(rollup@4.67.4)(srvx@0.11.22)(terser@5.51.2)(typescript@5.9.3)(vite@7.3.7(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1))(vue-tsc@3.3.14(typescript@5.9.3))(yaml@2.9.1)
@@ -168,15 +168,18 @@ importers:
       '@auth/unstorage-adapter':
         specifier: 2.11.3
         version: 2.11.3(unstorage@1.17.5(db0@0.3.4)(ioredis@5.11.1))
-      '@mockatoo/connectors':
-        specifier: github:mockatoo/connectors#main
-        version: git+https://github.com/mockatoo/connectors.git#37cdf5dceadeee3aa20cca76db5f46c3160ebeba(better-auth@1.7.7(@sveltejs/kit@2.70.3(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.57.3)(vite@7.3.7(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1)))(svelte@5.57.3)(typescript@5.9.3)(vite@7.3.7(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1)))(next@16.4.3(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(svelte@5.57.3)(vue@3.5.45(typescript@5.9.3)))(next-auth@5.0.0-beta.32(next@16.4.3(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1))
+      '@mockatoo/connect-authjs':
+        specifier: ^0.1.1
+        version: 0.1.1(next-auth@5.0.0-beta.32(next@16.4.3(@babel/core@7.29.13)(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1))
+      '@mockatoo/connect-better-auth':
+        specifier: ^0.1.1
+        version: 0.1.1(better-auth@1.7.7(@sveltejs/kit@2.70.3(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.57.3)(vite@7.3.7(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1)))(svelte@5.57.3)(typescript@5.9.3)(vite@7.3.7(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1)))(next@16.4.3(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(svelte@5.57.3)(vue@3.5.45(typescript@5.9.3)))
       better-auth:
         specifier: 1.7.7
         version: 1.7.7(@sveltejs/kit@2.70.3(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.57.3)(vite@7.3.7(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1)))(svelte@5.57.3)(typescript@5.9.3)(vite@7.3.7(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1)))(next@16.4.3(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(svelte@5.57.3)(vue@3.5.45(typescript@5.9.3))
       next-auth:
         specifier: 5.0.0-beta.32
-        version: 5.0.0-beta.32(next@16.4.3(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)
+        version: 5.0.0-beta.32(next@16.4.3(@babel/core@7.29.13)(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)
       unstorage:
         specifier: 1.17.5
         version: 1.17.5(db0@0.3.4)(ioredis@5.11.1)
@@ -1040,19 +1043,6 @@ packages:
     resolution: {integrity: sha512-YY9YMCTOgJdCjnbpEGg1z0jCM9Kw3MQJtcQhQMZBsuqoy6nca4ZeScI5CJjqdJT2wXAyaNDmJXdYuZaH/GlY5g==}
     peerDependencies:
       better-auth: 1.7.7
-
-  '@mockatoo/connectors@git+https://github.com/mockatoo/connectors.git#37cdf5dceadeee3aa20cca76db5f46c3160ebeba':
-    resolution: {commit: 37cdf5dceadeee3aa20cca76db5f46c3160ebeba, repo: https://github.com/mockatoo/connectors.git, type: git}
-    version: 0.0.0
-    engines: {node: '24'}
-    peerDependencies:
-      better-auth: 1.7.7
-      next-auth: 5.0.0-beta.32
-    peerDependenciesMeta:
-      better-auth:
-        optional: true
-      next-auth:
-        optional: true
 
   '@napi-rs/lzma-linux-x64-gnu@1.5.1':
     resolution: {integrity: sha512-oTXEIha4SsuXdTA4Iyskj0kpdx2yVXdhd75c2v3xGrHFfVMsbhTPZU/nMPL4sWKo4pBHm3aucLaqGlF696dTyQ==}
@@ -5705,18 +5695,13 @@ snapshots:
       - encoding
       - supports-color
 
-  '@mockatoo/connect-authjs@0.1.1(next-auth@5.0.0-beta.32(next@16.4.3(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1))':
+  '@mockatoo/connect-authjs@0.1.1(next-auth@5.0.0-beta.32(next@16.4.3(@babel/core@7.29.13)(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1))':
     dependencies:
-      next-auth: 5.0.0-beta.32(next@16.4.3(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)
+      next-auth: 5.0.0-beta.32(next@16.4.3(@babel/core@7.29.13)(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)
 
   '@mockatoo/connect-better-auth@0.1.1(better-auth@1.7.7(@sveltejs/kit@2.70.3(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.57.3)(vite@7.3.7(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1)))(svelte@5.57.3)(typescript@5.9.3)(vite@7.3.7(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1)))(next@16.4.3(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(svelte@5.57.3)(vue@3.5.45(typescript@5.9.3)))':
     dependencies:
       better-auth: 1.7.7(@sveltejs/kit@2.70.3(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.57.3)(vite@7.3.7(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1)))(svelte@5.57.3)(typescript@5.9.3)(vite@7.3.7(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1)))(next@16.4.3(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(svelte@5.57.3)(vue@3.5.45(typescript@5.9.3))
-
-  '@mockatoo/connectors@git+https://github.com/mockatoo/connectors.git#37cdf5dceadeee3aa20cca76db5f46c3160ebeba(better-auth@1.7.7(@sveltejs/kit@2.70.3(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.57.3)(vite@7.3.7(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1)))(svelte@5.57.3)(typescript@5.9.3)(vite@7.3.7(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1)))(next@16.4.3(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(svelte@5.57.3)(vue@3.5.45(typescript@5.9.3)))(next-auth@5.0.0-beta.32(next@16.4.3(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1))':
-    optionalDependencies:
-      better-auth: 1.7.7(@sveltejs/kit@2.70.3(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.57.3)(vite@7.3.7(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1)))(svelte@5.57.3)(typescript@5.9.3)(vite@7.3.7(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1)))(next@16.4.3(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(svelte@5.57.3)(vue@3.5.45(typescript@5.9.3))
-      next-auth: 5.0.0-beta.32(next@16.4.3(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)
 
   '@napi-rs/lzma-linux-x64-gnu@1.5.1':
     optional: true
@@ -8224,7 +8209,7 @@ snapshots:
 
   nanotar@0.3.0: {}
 
-  next-auth@5.0.0-beta.32(next@16.4.3(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1):
+  next-auth@5.0.0-beta.32(next@16.4.3(@babel/core@7.29.13)(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1):
     dependencies:
       '@auth/core': 0.41.3
       next: 16.4.3(@babel/core@7.29.13)(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)

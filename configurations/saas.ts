@@ -15,7 +15,7 @@ import {
 	mockLinkedIn,
 	mockMicrosoft,
 	mockTwitter,
-} from "@mockatoo/connectors/better-auth";
+} from "@mockatoo/connect-better-auth";
 import { betterAuth } from "better-auth";
 import { memoryAdapter } from "better-auth/adapters/memory";
 
