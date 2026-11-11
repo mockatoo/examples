@@ -6,18 +6,6 @@ import { authClient } from "../lib/auth-client";
 import { providers } from "../lib/providers";
 import { ProviderLogo } from "./provider-logo";
 
-// Better Auth redirects with ?error=invalid_code whenever the token exchange
-// fails: a provider outage, a timeout, or a bad code. The URL can't tell them
-// apart, so say what the user can do about all of them.
-const ERROR_MESSAGES: Record<string, string> = {
-	invalid_code: "Sign-in failed before it finished. Try again in a minute.",
-	access_denied: "Sign-in failed because you cancelled it.",
-};
-
-function errorMessage(code: string) {
-	return ERROR_MESSAGES[code] ?? "Sign-in failed. Please try again.";
-}
-
 export default function SignIn({
 	signedIn = false,
 	error,
@@ -27,7 +15,9 @@ export default function SignIn({
 }) {
 	const router = useRouter();
 	const [pending, setPending] = useState(false);
-	const [message, setMessage] = useState(error ? errorMessage(error) : "");
+	const [message, setMessage] = useState(
+		error ? `Sign-in failed. ${error}` : "",
+	);
 	async function signIn(provider: (typeof providers)[number]["id"]) {
 		setPending(true);
 		setMessage("");
