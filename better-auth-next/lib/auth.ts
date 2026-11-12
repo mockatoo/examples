@@ -38,6 +38,8 @@ export const auth = betterAuth({
 		},
 	},
 	rateLimit: {
+		// Allow parallel sign-ins when testing with Mockatoo.
+		enabled: mockOrigin ? false : undefined,
 		customRules: {
 			"/sign-in/social": { window: 10, max: 30 },
 		},
