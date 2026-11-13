@@ -34,11 +34,11 @@ Use Node.js 24 and pnpm 10. Create a test account at [Mockatoo](https://app.mock
 
 ```sh
 BETTER_AUTH_SECRET=<output of openssl rand -base64 32>
-MOCK_EMAIL=<your Mockatoo test email>
-MOCK_PASSWORD=<your Mockatoo test password>
+MOCKATOO_TEST_EMAIL=<your Mockatoo test email>
+MOCKATOO_TEST_PASSWORD=<your Mockatoo test password>
 ```
 
-`MOCK_EMAIL` and `MOCK_PASSWORD` are only for Playwright tests. The committed `.env` turns the mock on in production builds too; `pnpm dev` uses it either way.
+`MOCKATOO_TEST_EMAIL` and `MOCKATOO_TEST_PASSWORD` are only for Playwright tests. The committed `.env` turns the mock on in production builds too; `pnpm dev` uses it either way.
 
 ```sh
 pnpm install

@@ -30,7 +30,7 @@ Try the [live example](https://mockatoo-authjs-next.vercel.app).
 
 ## Run locally
 
-Use Node.js 24 and pnpm 10. Create a test account at [Mockatoo](https://app.mockatoo.globalunderdog.com), then create `.env.local` with `AUTH_SECRET`, `MOCK_EMAIL`, and `MOCK_PASSWORD`. Generate the auth secret with `openssl rand -base64 32`. The email and password are only used by the Playwright tests.
+Use Node.js 24 and pnpm 10. Create a test account at [Mockatoo](https://app.mockatoo.globalunderdog.com), then create `.env.local` with `AUTH_SECRET`, `MOCKATOO_TEST_EMAIL`, and `MOCKATOO_TEST_PASSWORD`. Generate the auth secret with `openssl rand -base64 32`. The email and password are only used by the Playwright tests.
 
 ```sh
 pnpm install

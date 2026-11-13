@@ -29,33 +29,33 @@ jobs:
       - run: pnpm --dir authjs-next exec playwright install --with-deps chromium
       - run: pnpm --dir authjs-next test
         env:
-          MOCK_EMAIL: ${{ secrets.MOCK_EMAIL }}
-          MOCK_PASSWORD: ${{ secrets.MOCK_PASSWORD }}
+          MOCKATOO_TEST_EMAIL: ${{ secrets.MOCKATOO_TEST_EMAIL }}
+          MOCKATOO_TEST_PASSWORD: ${{ secrets.MOCKATOO_TEST_PASSWORD }}
       - run: pnpm --dir better-auth-next exec playwright install --with-deps chromium
       - run: pnpm --dir better-auth-next test
         env:
-          MOCK_EMAIL: ${{ secrets.MOCK_EMAIL }}
-          MOCK_PASSWORD: ${{ secrets.MOCK_PASSWORD }}
+          MOCKATOO_TEST_EMAIL: ${{ secrets.MOCKATOO_TEST_EMAIL }}
+          MOCKATOO_TEST_PASSWORD: ${{ secrets.MOCKATOO_TEST_PASSWORD }}
       - run: pnpm --dir better-auth-sveltekit exec playwright install --with-deps chromium
       - run: pnpm --dir better-auth-sveltekit test
         env:
-          MOCK_EMAIL: ${{ secrets.MOCK_EMAIL }}
-          MOCK_PASSWORD: ${{ secrets.MOCK_PASSWORD }}
+          MOCKATOO_TEST_EMAIL: ${{ secrets.MOCKATOO_TEST_EMAIL }}
+          MOCKATOO_TEST_PASSWORD: ${{ secrets.MOCKATOO_TEST_PASSWORD }}
       - run: pnpm --dir authjs-nuxt exec playwright install --with-deps chromium
       - run: pnpm --dir authjs-nuxt test
         env:
-          MOCK_EMAIL: ${{ secrets.MOCK_EMAIL }}
-          MOCK_PASSWORD: ${{ secrets.MOCK_PASSWORD }}
+          MOCKATOO_TEST_EMAIL: ${{ secrets.MOCKATOO_TEST_EMAIL }}
+          MOCKATOO_TEST_PASSWORD: ${{ secrets.MOCKATOO_TEST_PASSWORD }}
       - run: pnpm --dir oauth4webapi-hono exec playwright install --with-deps chromium
       - run: pnpm --dir oauth4webapi-hono test
         env:
-          MOCK_EMAIL: ${{ secrets.MOCK_EMAIL }}
-          MOCK_PASSWORD: ${{ secrets.MOCK_PASSWORD }}
+          MOCKATOO_TEST_EMAIL: ${{ secrets.MOCKATOO_TEST_EMAIL }}
+          MOCKATOO_TEST_PASSWORD: ${{ secrets.MOCKATOO_TEST_PASSWORD }}
       - run: pnpm --dir cypress exec cypress install
       - run: pnpm --dir cypress test
         env:
-          CYPRESS_MOCK_EMAIL: ${{ secrets.MOCK_EMAIL }}
-          CYPRESS_MOCK_PASSWORD: ${{ secrets.MOCK_PASSWORD }}
+          CYPRESS_MOCKATOO_TEST_EMAIL: ${{ secrets.MOCKATOO_TEST_EMAIL }}
+          CYPRESS_MOCKATOO_TEST_PASSWORD: ${{ secrets.MOCKATOO_TEST_PASSWORD }}
       - name: Upload Cypress artifacts
         if: failure()
         uses: actions/upload-artifact@v4

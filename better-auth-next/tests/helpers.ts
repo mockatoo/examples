@@ -4,13 +4,13 @@ import { expect, type Page } from "@playwright/test";
 import type { providers } from "../lib/providers";
 
 nextEnv.loadEnvConfig(process.cwd());
-const email = process.env.MOCK_EMAIL ?? "";
-const password = process.env.MOCK_PASSWORD ?? "";
+const email = process.env.MOCKATOO_TEST_EMAIL ?? "";
+const password = process.env.MOCKATOO_TEST_PASSWORD ?? "";
 
 export function createAddress(tag = ""): string {
 	if (!email || !password)
 		throw new Error(
-			"Set MOCK_EMAIL and MOCK_PASSWORD in .env.local or the environment.",
+			"Set MOCKATOO_TEST_EMAIL and MOCKATOO_TEST_PASSWORD in .env.local or the environment.",
 		);
 	// An ordinary tag isolates each app account, including across repeated runs.
 	return email.replace("@", `+e2e-${randomUUID()}${tag ? `.${tag}` : ""}@`);

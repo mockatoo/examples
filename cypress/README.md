@@ -38,8 +38,8 @@ export BETTER_AUTH_SECRET="$(openssl rand -base64 32)"
 Create a test account at [Mockatoo](https://app.mockatoo.globalunderdog.com), then set the credentials in your shell:
 
 ```sh
-export CYPRESS_MOCK_EMAIL=<your Mockatoo test email>
-export CYPRESS_MOCK_PASSWORD=<your Mockatoo test password>
+export CYPRESS_MOCKATOO_TEST_EMAIL=<your Mockatoo test email>
+export CYPRESS_MOCKATOO_TEST_PASSWORD=<your Mockatoo test password>
 ```
 
 Install Cypress and run the test from the examples repository root:

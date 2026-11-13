@@ -30,7 +30,7 @@ Try the [live example](https://mockatoo-oauth4webapi-hono.vercel.app).
 
 ## Run locally
 
-Use Node.js 24 and pnpm 10. Create `.env.local` with `SESSION_SECRET` (generate it with `openssl rand -base64 32`). Add `MOCK_EMAIL` and `MOCK_PASSWORD` from your [Mockatoo account](https://app.mockatoo.globalunderdog.com) to run the browser tests; the app never uses these credentials.
+Use Node.js 24 and pnpm 10. Create `.env.local` with `SESSION_SECRET` (generate it with `openssl rand -base64 32`). Add `MOCKATOO_TEST_EMAIL` and `MOCKATOO_TEST_PASSWORD` from your [Mockatoo account](https://app.mockatoo.globalunderdog.com) to run the browser tests; the app never uses these credentials.
 
 ```sh
 pnpm install

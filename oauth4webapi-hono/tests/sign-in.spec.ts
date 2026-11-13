@@ -6,12 +6,12 @@ try {
 } catch (error) {
 	if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
 }
-const email = process.env.MOCK_EMAIL;
-const password = process.env.MOCK_PASSWORD;
+const email = process.env.MOCKATOO_TEST_EMAIL;
+const password = process.env.MOCKATOO_TEST_PASSWORD;
 test.beforeEach(() => {
 	if (!email || !password)
 		throw new Error(
-			"Set MOCK_EMAIL and MOCK_PASSWORD in .env.local or the environment.",
+			"Set MOCKATOO_TEST_EMAIL and MOCKATOO_TEST_PASSWORD in .env.local or the environment.",
 		);
 });
 for (const provider of ["Google", "Apple", "Microsoft", "LinkedIn"]) {
