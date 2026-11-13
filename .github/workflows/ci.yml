@@ -56,3 +56,12 @@ jobs:
         env:
           CYPRESS_MOCK_EMAIL: ${{ secrets.MOCK_EMAIL }}
           CYPRESS_MOCK_PASSWORD: ${{ secrets.MOCK_PASSWORD }}
+      - name: Upload Cypress artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-artifacts
+          path: |
+            cypress/cypress/screenshots
+            cypress/cypress/videos
+          retention-days: 7
