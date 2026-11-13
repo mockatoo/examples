@@ -6,11 +6,12 @@
 		"node": "24"
 	},
 	"scripts": {
-		"test": "start-server-and-test 'pnpm --dir ../better-auth-next start' http://localhost:3000 'cypress run'",
+		"test": "START_SERVER_AND_TEST_INSECURE=1 start-server-and-test 'pnpm --dir ../better-auth-next build && pnpm --dir ../better-auth-next start' http://localhost:3000 'local-ssl-proxy --source 3443 --target 3000' https://localhost:3443 'cypress run'",
 		"typecheck": "tsc --noEmit"
 	},
 	"devDependencies": {
 		"cypress": "16.2.0",
+		"local-ssl-proxy": "2.0.5",
 		"start-server-and-test": "3.0.13"
 	}
 }

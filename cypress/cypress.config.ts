@@ -6,7 +6,7 @@ const mockatooUrl =
 export default defineConfig({
 	defaultCommandTimeout: 10000,
 	e2e: {
-		baseUrl: "http://localhost:3000",
+		baseUrl: "https://localhost:3443",
 		supportFile: false,
 	},
 	env: {

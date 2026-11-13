@@ -51,3 +51,8 @@ jobs:
         env:
           MOCK_EMAIL: ${{ secrets.MOCK_EMAIL }}
           MOCK_PASSWORD: ${{ secrets.MOCK_PASSWORD }}
+      - run: pnpm --dir cypress exec cypress install
+      - run: pnpm --dir cypress test
+        env:
+          CYPRESS_MOCK_EMAIL: ${{ secrets.MOCK_EMAIL }}
+          CYPRESS_MOCK_PASSWORD: ${{ secrets.MOCK_PASSWORD }}
