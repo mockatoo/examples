@@ -23,6 +23,8 @@ jobs:
         run: echo "AUTH_SECRET=$(openssl rand -base64 32)" >> "$GITHUB_ENV"
       - name: Generate Better Auth runtime secret
         run: echo "BETTER_AUTH_SECRET=$(openssl rand -base64 32)" >> "$GITHUB_ENV"
+      - name: Generate Hono runtime secret
+        run: echo "SESSION_SECRET=$(openssl rand -base64 32)" >> "$GITHUB_ENV"
       - run: pnpm build
       - run: pnpm --dir authjs-next exec playwright install --with-deps chromium
       - run: pnpm --dir authjs-next test
@@ -41,6 +43,11 @@ jobs:
           MOCK_PASSWORD: ${{ secrets.MOCK_PASSWORD }}
       - run: pnpm --dir authjs-nuxt exec playwright install --with-deps chromium
       - run: pnpm --dir authjs-nuxt test
+        env:
+          MOCK_EMAIL: ${{ secrets.MOCK_EMAIL }}
+          MOCK_PASSWORD: ${{ secrets.MOCK_PASSWORD }}
+      - run: pnpm --dir oauth4webapi-hono exec playwright install --with-deps chromium
+      - run: pnpm --dir oauth4webapi-hono test
         env:
           MOCK_EMAIL: ${{ secrets.MOCK_EMAIL }}
           MOCK_PASSWORD: ${{ secrets.MOCK_PASSWORD }}

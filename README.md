@@ -30,6 +30,7 @@ Example applications and authentication configurations for [Mockatoo](https://mo
 - [Auth.js + Next.js](authjs-next/): JWT sessions with Auth.js.
 - [Better Auth + Next.js](better-auth-next/): cookie-based sessions with Better Auth’s generic OAuth connector.
 - [Better Auth + SvelteKit](better-auth-sveltekit/): cookie-based sessions with Better Auth’s provider-shaped Mockatoo connectors.
+- [Hono + oauth4webapi](oauth4webapi-hono/): minimal framework example exercising raw OAuth/OIDC without an auth abstraction.
 - [Authentication configurations](configurations/): Better Auth and Auth.js setups for SaaS, B2B, connected accounts, and other use cases.
 
 Use Node.js 24 and pnpm 10. Each example has its own README with setup and deployment instructions.
