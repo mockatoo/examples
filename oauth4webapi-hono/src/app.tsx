@@ -10,7 +10,17 @@ if (!secret || secret.length < 32) {
 		"Set SESSION_SECRET to a random secret of at least 32 characters.",
 	);
 }
-const mock = process.env.MOCKATOO_URL;
+// Your app would switch on NODE_ENV, so production uses the real providers:
+//   const useMock = process.env.NODE_ENV !== "production";
+// This demo also runs the mock in production on Vercel, where NODE_ENV is
+// always "production", so its committed .env sets MOCKATOO_FORCE=true.
+// Delete that line from .env before you ship.
+const useMock =
+	process.env.NODE_ENV !== "production" ||
+	process.env.MOCKATOO_FORCE === "true";
+// Optional origin override for Mockatoo's own tests; unset uses the hosted service.
+const origin =
+	process.env.MOCKATOO_URL || "https://app.mockatoo.globalunderdog.com";
 const providers = [
 	{
 		id: "google",
@@ -48,13 +58,15 @@ const providers = [
 ]
 	.map((provider) => {
 		const prefix = provider.id.toUpperCase();
-		const issuer = mock
-			? new URL(provider.path, mock).href
+		const issuer = useMock
+			? new URL(provider.path, origin).href
 			: process.env[`${prefix}_ISSUER`] || provider.issuer;
 		const client: oauth.Client = {
-			client_id: mock ? "mockatoo" : process.env[`${prefix}_CLIENT_ID`] || "",
+			client_id: useMock
+				? "mockatoo"
+				: process.env[`${prefix}_CLIENT_ID`] || "",
 		};
-		const clientSecret = mock
+		const clientSecret = useMock
 			? "mockatoo-secret"
 			: process.env[`${prefix}_CLIENT_SECRET`] || "";
 		return { ...provider, issuer, client, clientSecret };
@@ -64,11 +76,11 @@ const providers = [
 			provider.issuer && provider.client.client_id && provider.clientSecret,
 	);
 if (!providers.length)
-	throw new Error("Configure provider credentials or MOCKATOO_URL.");
+	throw new Error("Configure provider credentials or set MOCKATOO_FORCE=true.");
 const options =
-	mock &&
-	new URL(mock).protocol === "http:" &&
-	["localhost", "127.0.0.1"].includes(new URL(mock).hostname)
+	useMock &&
+	new URL(origin).protocol === "http:" &&
+	["localhost", "127.0.0.1"].includes(new URL(origin).hostname)
 		? { [oauth.allowInsecureRequests]: true as const }
 		: {};
 const metadata = async (issuer: string) => {

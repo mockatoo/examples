@@ -9,14 +9,23 @@ import {
 	mockTwitter,
 } from "@mockatoo/connect-better-auth";
 import { betterAuth } from "better-auth";
+import { dev } from "$app/environment";
 import { env } from "$env/dynamic/private";
-import { MOCKATOO_URL } from "$env/static/private";
 
 if (!env.BETTER_AUTH_SECRET) {
 	throw new Error(
 		"BETTER_AUTH_SECRET is required. Set it in .env.local or your deployment environment.",
 	);
 }
+
+// Your app would switch on dev, so production uses the real providers:
+//   const useMock = dev;   // import { dev } from "$app/environment";
+// This demo also runs the mock in production on Vercel, where dev is
+// always false, so its committed .env sets MOCKATOO_FORCE=true.
+// Delete that line from .env before you ship.
+const useMock = dev || __MOCKATOO_FORCE__;
+// Optional origin override for Mockatoo's own tests; unset uses the hosted service.
+const origin = env.MOCKATOO_URL || undefined;
 
 export const auth = betterAuth({
 	baseURL: { allowedHosts: ["localhost:*", "*.vercel.app"] },
@@ -37,7 +46,7 @@ export const auth = betterAuth({
 		},
 	},
 	rateLimit: { customRules: { "/sign-in/social": { window: 10, max: 30 } } },
-	socialProviders: MOCKATOO_URL
+	socialProviders: useMock
 		? {}
 		: {
 				apple: {
@@ -75,16 +84,16 @@ export const auth = betterAuth({
 					clientSecret: process.env.TWITTER_CLIENT_SECRET ?? "",
 				},
 			},
-	plugins: MOCKATOO_URL
+	plugins: useMock
 		? [
-				mockApple({ origin: MOCKATOO_URL }),
-				mockGoogle({ origin: MOCKATOO_URL }),
-				mockGitHub({ origin: MOCKATOO_URL }),
-				mockDiscord({ origin: MOCKATOO_URL }),
-				mockFacebook({ origin: MOCKATOO_URL }),
-				mockLinkedIn({ origin: MOCKATOO_URL }),
-				mockMicrosoft({ origin: MOCKATOO_URL }),
-				mockTwitter({ origin: MOCKATOO_URL }),
+				mockApple({ origin }),
+				mockGoogle({ origin }),
+				mockGitHub({ origin }),
+				mockDiscord({ origin }),
+				mockFacebook({ origin }),
+				mockLinkedIn({ origin }),
+				mockMicrosoft({ origin }),
+				mockTwitter({ origin }),
 			]
 		: [],
 });

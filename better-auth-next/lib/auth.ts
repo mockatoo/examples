@@ -17,7 +17,16 @@ if (!secret) {
 	);
 }
 
-const mockOrigin = process.env.MOCKATOO_URL;
+// Your app would switch on NODE_ENV, so production uses the real providers:
+//   const useMock = process.env.NODE_ENV !== "production";
+// This demo also runs the mock in production on Vercel, where NODE_ENV is
+// always "production", so its committed .env sets MOCKATOO_FORCE=true.
+// Delete that line from .env before you ship.
+const useMock =
+	process.env.NODE_ENV !== "production" ||
+	process.env.MOCKATOO_FORCE === "true";
+// Optional origin override for Mockatoo's own tests; unset uses the hosted service.
+const origin = process.env.MOCKATOO_URL;
 
 export const auth = betterAuth({
 	baseURL: { allowedHosts: ["localhost:*", "*.vercel.app"] },
@@ -39,12 +48,12 @@ export const auth = betterAuth({
 	},
 	rateLimit: {
 		// Allow parallel sign-ins when testing with Mockatoo.
-		enabled: mockOrigin ? false : undefined,
+		enabled: useMock ? false : undefined,
 		customRules: {
 			"/sign-in/social": { window: 10, max: 30 },
 		},
 	},
-	socialProviders: mockOrigin
+	socialProviders: useMock
 		? {}
 		: {
 				apple: {
@@ -82,16 +91,16 @@ export const auth = betterAuth({
 					clientSecret: process.env.TWITTER_CLIENT_SECRET ?? "",
 				},
 			},
-	plugins: mockOrigin
+	plugins: useMock
 		? [
-				mockApple({ origin: mockOrigin }),
-				mockGoogle({ origin: mockOrigin }),
-				mockGitHub({ origin: mockOrigin }),
-				mockDiscord({ origin: mockOrigin }),
-				mockFacebook({ origin: mockOrigin }),
-				mockLinkedIn({ origin: mockOrigin }),
-				mockMicrosoft({ origin: mockOrigin }),
-				mockTwitter({ origin: mockOrigin }),
+				mockApple({ origin }),
+				mockGoogle({ origin }),
+				mockGitHub({ origin }),
+				mockDiscord({ origin }),
+				mockFacebook({ origin }),
+				mockLinkedIn({ origin }),
+				mockMicrosoft({ origin }),
+				mockTwitter({ origin }),
 			]
 		: [],
 });

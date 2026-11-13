@@ -24,7 +24,7 @@
 
 # Hono + oauth4webapi
 
-A minimal framework example exercising raw OAuth/OIDC without an auth abstraction. `src/app.tsx` handles discovery, authorization code flow with PKCE, state and nonce validation, ID-token validation, and user info using oauth4webapi directly. Choose Google, Apple, Microsoft, or LinkedIn. The committed configuration uses each provider’s Mockatoo OIDC endpoint. Hono renders one page through `src/page.tsx`, which holds the markup and styles. Signed, HttpOnly cookies hold short-lived OAuth state and a one-hour session; no database is needed. Tokens stay on the server and are discarded after user info is read.
+A minimal framework example exercising raw OAuth/OIDC without an auth abstraction. `src/app.tsx` handles discovery, authorization code flow with PKCE, state and nonce validation, ID-token validation, and user info using oauth4webapi directly. Choose Google, Apple, Microsoft, or LinkedIn. The committed configuration uses each provider’s Mockatoo OIDC endpoint. The committed `.env` turns the mock on in production builds too; `pnpm dev` uses it either way. Hono renders one page through `src/page.tsx`, which holds the markup and styles. Signed, HttpOnly cookies hold short-lived OAuth state and a one-hour session; no database is needed. Tokens stay on the server and are discarded after user info is read.
 
 Try the [live example](https://mockatoo-oauth4webapi-hono.vercel.app).
 
@@ -45,7 +45,7 @@ Deploy this directory to Vercel. The committed `vercel.json` selects Hono and th
 
 ## Before production
 
-Remove `MOCKATOO_URL` from `.env`. Register each provider you want to enable and set its variables below. Providers without credentials are omitted. Callback URLs are `https://<your-domain>/callback/<provider-id>`.
+Delete `MOCKATOO_FORCE` from `.env`. Production then uses the real providers and `pnpm dev` keeps the mock. The bundled Playwright test runs a production build, so run it with `MOCKATOO_FORCE=true pnpm test` after that. Register each provider you want to enable and set its variables below. Providers without credentials are omitted. Callback URLs are `https://<your-domain>/callback/<provider-id>`.
 
 | Provider ID | Environment variables | Setup |
 | --- | --- | --- |

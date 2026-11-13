@@ -25,6 +25,15 @@ if (!process.env.AUTH_SECRET) {
 	);
 }
 
+// Your app would switch on NODE_ENV, so production uses the real providers:
+//   const useMock = process.env.NODE_ENV !== "production";
+// This demo also runs the mock in production on Vercel, where NODE_ENV is
+// always "production", so its committed .env sets MOCKATOO_FORCE=true.
+// Delete that line from .env before you ship.
+const useMock =
+	process.env.NODE_ENV !== "production" ||
+	process.env.MOCKATOO_FORCE === "true";
+// Optional origin override for Mockatoo's own tests; unset uses the hosted service.
 const origin = process.env.MOCKATOO_URL;
 const options = (index: number) => ({
 	authorization: { params: { scope: providers[index].scope } },
@@ -41,7 +50,7 @@ const microsoft = {
 export const { handlers, auth, signIn, signOut } = NextAuth({
 	trustHost: true,
 	pages: { signIn: "/", error: "/" },
-	providers: origin
+	providers: useMock
 		? [
 				MockApple({ origin, ...options(0) }),
 				MockGoogle({ origin, ...options(1) }),

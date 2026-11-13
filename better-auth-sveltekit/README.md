@@ -38,7 +38,7 @@ MOCK_EMAIL=<your Mockatoo test email>
 MOCK_PASSWORD=<your Mockatoo test password>
 ```
 
-`MOCK_EMAIL` and `MOCK_PASSWORD` are only for browser tests. The committed `.env` selects the hosted Mockatoo service for local development.
+`MOCK_EMAIL` and `MOCK_PASSWORD` are only for browser tests. The committed `.env` turns the mock on in production builds too; `pnpm dev` uses it either way.
 
 ```sh
 pnpm install
@@ -49,12 +49,12 @@ Open http://localhost:3000. Run the browser tests with `pnpm test` after install
 
 ## Deploy
 
-Deploy this directory to Vercel with the SvelteKit framework preset. Set `BETTER_AUTH_SECRET` in the Production and Preview environments using `openssl rand -base64 32`. SvelteKit reads this secret at runtime, while `MOCKATOO_URL` is read from `.env` at build time. The app derives its callback origin from the incoming request, so previews and the production alias work without a URL setting. Do not add `MOCKATOO_URL` to Vercel.
+Deploy this directory to Vercel with the SvelteKit framework preset. Set `BETTER_AUTH_SECRET` in the Production and Preview environments using `openssl rand -base64 32`. SvelteKit reads this secret at runtime. The app derives its callback origin from the incoming request, so previews and the production alias work without a URL setting. The committed `.env` keeps the demo on the mock.
 
 ## Apple and SvelteKit CSRF
 
-Apple returns to `/api/auth/callback/apple` with a cross-site form POST (`response_mode=form_post`). SvelteKit rejects cross-site form POSTs with `Cross-site POST form submissions are forbidden` before Better Auth sees the request, so `svelte.config.js` adds Apple's origin to `kit.csrf.trustedOrigins`: the `MOCKATOO_URL` origin while the mock is enabled, and `https://appleid.apple.com` once it is removed. `pnpm dev` skips this check, so the error appears only in `pnpm build` output and deployments.
+Apple returns to `/api/auth/callback/apple` with a cross-site form POST (`response_mode=form_post`). SvelteKit rejects cross-site form POSTs with `Cross-site POST form submissions are forbidden` before Better Auth sees the request, so `svelte.config.js` adds Apple's origin to `kit.csrf.trustedOrigins`: the Mockatoo origin while `MOCKATOO_FORCE=true`, and `https://appleid.apple.com` once it is removed. `pnpm dev` skips this check, so the error appears only in `pnpm build` output and deployments.
 
 ## Before production
 
-Mockatoo is for development and testing, not production authentication. Remove the `MOCKATOO_URL` line from `.env` before deploying to activate the real Better Auth provider configuration in `src/lib/auth.ts`. Register each OAuth application with its provider and use the callback URL `https://<your-domain>/api/auth/callback/<provider-id>`. Set the corresponding `*_CLIENT_ID` and `*_CLIENT_SECRET` deployment variables: `APPLE`, `GOOGLE`, `GITHUB`, `DISCORD`, `FACEBOOK`, `LINKEDIN`, `MICROSOFT`, and `TWITTER`. Apple requires its provider-specific signed client secret. Microsoft is configured for the `common` tenant. Configure only providers for which you have credentials, and remove unused providers and buttons.
+Mockatoo is for development and testing, not production authentication. Delete `MOCKATOO_FORCE` from `.env`. Production then uses the real providers and `pnpm dev` keeps the mock. The bundled Playwright test runs a production build, so run it with `MOCKATOO_FORCE=true pnpm test` after that. Register each OAuth application with its provider and use the callback URL `https://<your-domain>/api/auth/callback/<provider-id>`. Set the corresponding `*_CLIENT_ID` and `*_CLIENT_SECRET` deployment variables: `APPLE`, `GOOGLE`, `GITHUB`, `DISCORD`, `FACEBOOK`, `LINKEDIN`, `MICROSOFT`, and `TWITTER`. Apple requires its provider-specific signed client secret. Microsoft is configured for the `common` tenant. Configure only providers for which you have credentials, and remove unused providers and buttons.

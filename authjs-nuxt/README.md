@@ -35,16 +35,16 @@ pnpm dev
 
 Open http://localhost:3000. Run `pnpm test` to exercise sign-in, sign-out, and denied consent (install Chromium first with `pnpm exec playwright install chromium`).
 
-The Nuxt server route runs Auth.js core directly; no Nuxt auth module or Next.js server is needed. The initial session is read on the server with Nuxt’s request-aware fetch. The committed Mockatoo origin is captured at build time; AUTH_SECRET is read only at runtime. The dev command loads local secrets from .env.local before Nuxt loads the non-secret .env config.
+The Nuxt server route runs Auth.js core directly; no Nuxt auth module or Next.js server is needed. The initial session is read on the server with Nuxt’s request-aware fetch. The committed `.env` turns the mock on in production builds too; `pnpm dev` uses it either way. AUTH_SECRET is read only at runtime. The dev command loads local secrets from `.env.local` before Nuxt loads the non-secret `.env` config.
 
 ## Deploy
 
-Deploy this directory to Vercel and set a generated `AUTH_SECRET` in both Production and Preview environments. The committed `.env` enables the hosted Mockatoo service; no deployment URL or provider credentials are needed.
+Deploy this directory to Vercel and set a generated `AUTH_SECRET` in both Production and Preview environments. The committed `.env` keeps the demo on the mock; no deployment URL or provider credentials are needed.
 
 GitHub deployments use the mockatoo/examples repository, authjs-nuxt as the project root, the Nuxt preset, and Node.js 24. Pushes to main deploy production; pull requests create previews. This folder becomes available there through the repository export after merging.
 
 ## Before production
 
-Remove `MOCKATOO_URL` from `.env` to use the real Auth.js providers. Register an OAuth application with each provider and configure its callback as `https://<your-domain>/api/auth/callback/<provider-id>`. Set `AUTH_<PROVIDER>_ID` and `AUTH_<PROVIDER>_SECRET` in the deployment environment (for example, `AUTH_GOOGLE_ID` and `AUTH_GOOGLE_SECRET`; Microsoft uses `AUTH_MICROSOFT_ENTRA_ID_ID` and `AUTH_MICROSOFT_ENTRA_ID_SECRET`, and X uses `AUTH_TWITTER_ID` and `AUTH_TWITTER_SECRET`). Apple requires its own signed client secret. Configure only providers for which you have credentials, and remove unused providers and buttons.
+Delete `MOCKATOO_FORCE` from `.env`. Production then uses the real providers and `pnpm dev` keeps the mock. The bundled Playwright test runs a production build, so run it with `MOCKATOO_FORCE=true pnpm test` after that. Register an OAuth application with each provider and configure its callback as `https://<your-domain>/api/auth/callback/<provider-id>`. Set `AUTH_<PROVIDER>_ID` and `AUTH_<PROVIDER>_SECRET` in the deployment environment (for example, `AUTH_GOOGLE_ID` and `AUTH_GOOGLE_SECRET`; Microsoft uses `AUTH_MICROSOFT_ENTRA_ID_ID` and `AUTH_MICROSOFT_ENTRA_ID_SECRET`, and X uses `AUTH_TWITTER_ID` and `AUTH_TWITTER_SECRET`). Apple requires its own signed client secret. Configure only providers for which you have credentials, and remove unused providers and buttons.
 
 The app requests basic profile and email access where available. X's OAuth 2.0 user API does not provide an email address, so that option requests `users.read` and the `tweet.read` permission required for its user lookup, and identifies the user by name. Microsoft uses the ID token profile rather than requesting Graph access. Mockatoo is for development and testing, not production authentication.

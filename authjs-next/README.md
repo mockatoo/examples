@@ -37,14 +37,16 @@ pnpm install
 pnpm dev
 ```
 
-Open http://localhost:3000. Run `pnpm test` to exercise sign-in, sign-out, and denied consent (install Chromium first with `pnpm exec playwright install chromium`).
+Open http://localhost:3000. The committed `.env` turns the mock on in production builds too; `pnpm dev` uses it either way. Run `pnpm test` to exercise sign-in, sign-out, and denied consent (install Chromium first with `pnpm exec playwright install chromium`).
 
 ## Deploy
 
-Deploy this directory to Vercel and set a generated `AUTH_SECRET` in both Production and Preview environments. The committed `.env` enables the hosted Mockatoo service; no deployment URL or provider credentials are needed.
+Deploy this directory to Vercel and set a generated `AUTH_SECRET` in both Production and Preview environments. The committed `.env` keeps the demo on the mock; no deployment URL or provider credentials are needed.
 
 ## Before production
 
-Remove `MOCKATOO_URL` from `.env` to use the real Auth.js providers. Register an OAuth application with each provider and configure its callback as `https://<your-domain>/api/auth/callback/<provider-id>`. Set `AUTH_<PROVIDER>_ID` and `AUTH_<PROVIDER>_SECRET` in the deployment environment (for example, `AUTH_GOOGLE_ID` and `AUTH_GOOGLE_SECRET`; Microsoft uses `AUTH_MICROSOFT_ENTRA_ID_ID` and `AUTH_MICROSOFT_ENTRA_ID_SECRET`, and X uses `AUTH_TWITTER_ID` and `AUTH_TWITTER_SECRET`). Apple requires its own signed client secret. Configure only providers for which you have credentials, and remove unused providers and buttons.
+Delete `MOCKATOO_FORCE` from `.env`. Production then uses the real providers and `pnpm dev` keeps the mock. Register an OAuth application with each provider and configure its callback as `https://<your-domain>/api/auth/callback/<provider-id>`. Set `AUTH_<PROVIDER>_ID` and `AUTH_<PROVIDER>_SECRET` in the deployment environment (for example, `AUTH_GOOGLE_ID` and `AUTH_GOOGLE_SECRET`; Microsoft uses `AUTH_MICROSOFT_ENTRA_ID_ID` and `AUTH_MICROSOFT_ENTRA_ID_SECRET`, and X uses `AUTH_TWITTER_ID` and `AUTH_TWITTER_SECRET`). Apple requires its own signed client secret. Configure only providers for which you have credentials, and remove unused providers and buttons.
+
+The bundled Playwright test runs a production build, so after deleting the flag run it with `MOCKATOO_FORCE=true pnpm test`.
 
 The app requests basic profile and email access where available. X's OAuth 2.0 user API does not provide an email address, so that option requests `users.read` and the `tweet.read` permission required for its user lookup, and identifies the user by name. Microsoft uses the ID token profile rather than requesting Graph access. Mockatoo is for development and testing, not production authentication.

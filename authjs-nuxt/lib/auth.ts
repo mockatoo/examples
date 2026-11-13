@@ -19,7 +19,12 @@ import MicrosoftEntraID from "next-auth/providers/microsoft-entra-id";
 import Twitter from "next-auth/providers/twitter";
 import { providers } from "./providers";
 
-export function authConfig(origin: string): AuthConfig {
+// Your app would switch on NODE_ENV, so production uses the real providers:
+//   const useMock = process.env.NODE_ENV !== "production";
+// This demo also runs the mock in production on Vercel, where NODE_ENV is
+// always "production", so its committed .env sets MOCKATOO_FORCE=true.
+// Delete that line from .env before you ship.
+export function authConfig(useMock: boolean, origin?: string): AuthConfig {
 	const options = (index: number) => ({
 		authorization: { params: { scope: providers[index].scope } },
 	});
@@ -37,7 +42,7 @@ export function authConfig(origin: string): AuthConfig {
 		basePath: "/api/auth",
 		trustHost: true,
 		pages: { signIn: "/", error: "/" },
-		providers: origin
+		providers: useMock
 			? [
 					MockApple({ origin, ...options(0) }),
 					MockGoogle({ origin, ...options(1) }),
