@@ -14,7 +14,7 @@
 		"test": "playwright test"
 	},
 	"dependencies": {
-		"@mockatoo/connect-better-auth": "^0.1.1",
+		"@mockatoo/connect-better-auth": "^0.1.2",
 		"@sveltejs/adapter-vercel": "^5.8.0",
 		"@sveltejs/kit": "^2.48.5",
 		"better-auth": "1.7.7",

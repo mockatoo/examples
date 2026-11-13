@@ -21,8 +21,8 @@ importers:
   authjs-next:
     dependencies:
       '@mockatoo/connect-authjs':
-        specifier: ^0.1.1
-        version: 0.1.1(next-auth@5.0.0-beta.32(next@16.4.3(@babel/core@7.29.13)(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1))
+        specifier: ^0.1.2
+        version: 0.1.2(next-auth@5.0.0-beta.32(next@16.4.3(@babel/core@7.29.13)(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1))
       next:
         specifier: ^16.0.0
         version: 16.4.3(@babel/core@7.29.13)(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
@@ -61,8 +61,8 @@ importers:
         specifier: 0.41.3
         version: 0.41.3
       '@mockatoo/connect-authjs':
-        specifier: ^0.1.1
-        version: 0.1.1(next-auth@5.0.0-beta.32(next@16.4.3(@babel/core@7.29.13)(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1))
+        specifier: ^0.1.2
+        version: 0.1.2(next-auth@5.0.0-beta.32(next@16.4.3(@babel/core@7.29.13)(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1))
       next-auth:
         specifier: 5.0.0-beta.32
         version: 5.0.0-beta.32(next@16.4.3(@babel/core@7.29.13)(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)
@@ -89,8 +89,8 @@ importers:
   better-auth-next:
     dependencies:
       '@mockatoo/connect-better-auth':
-        specifier: ^0.1.1
-        version: 0.1.1(better-auth@1.7.7(@sveltejs/kit@2.70.3(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.57.3)(vite@7.3.7(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))(svelte@5.57.3)(typescript@5.9.3)(vite@7.3.7(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))(next@16.4.3(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(svelte@5.57.3)(vue@3.5.45(typescript@5.9.3)))
+        specifier: ^0.1.2
+        version: 0.1.2(better-auth@1.7.7(@sveltejs/kit@2.70.3(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.57.3)(vite@7.3.7(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))(svelte@5.57.3)(typescript@5.9.3)(vite@7.3.7(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))(next@16.4.3(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(svelte@5.57.3)(vue@3.5.45(typescript@5.9.3)))
       better-auth:
         specifier: 1.7.7
         version: 1.7.7(@sveltejs/kit@2.70.3(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.57.3)(vite@7.3.7(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))(svelte@5.57.3)(typescript@5.9.3)(vite@7.3.7(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))(next@16.4.3(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(svelte@5.57.3)(vue@3.5.45(typescript@5.9.3))
@@ -126,8 +126,8 @@ importers:
   better-auth-sveltekit:
     dependencies:
       '@mockatoo/connect-better-auth':
-        specifier: ^0.1.1
-        version: 0.1.1(better-auth@1.7.7(@sveltejs/kit@2.70.3(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.57.3)(vite@7.3.7(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))(svelte@5.57.3)(typescript@5.9.3)(vite@7.3.7(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))(next@16.4.3(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(svelte@5.57.3)(vue@3.5.45(typescript@5.9.3)))
+        specifier: ^0.1.2
+        version: 0.1.2(better-auth@1.7.7(@sveltejs/kit@2.70.3(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.57.3)(vite@7.3.7(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))(svelte@5.57.3)(typescript@5.9.3)(vite@7.3.7(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))(next@16.4.3(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(svelte@5.57.3)(vue@3.5.45(typescript@5.9.3)))
       '@sveltejs/adapter-vercel':
         specifier: ^5.8.0
         version: 5.10.3(@sveltejs/kit@2.70.3(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.57.3)(vite@7.3.7(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))(svelte@5.57.3)(typescript@5.9.3)(vite@7.3.7(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))(rollup@4.67.4)
@@ -169,11 +169,11 @@ importers:
         specifier: 2.11.3
         version: 2.11.3(unstorage@1.17.5(db0@0.3.4)(ioredis@5.11.1))
       '@mockatoo/connect-authjs':
-        specifier: ^0.1.1
-        version: 0.1.1(next-auth@5.0.0-beta.32(next@16.4.3(@babel/core@7.29.13)(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1))
+        specifier: ^0.1.2
+        version: 0.1.2(next-auth@5.0.0-beta.32(next@16.4.3(@babel/core@7.29.13)(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1))
       '@mockatoo/connect-better-auth':
-        specifier: ^0.1.1
-        version: 0.1.1(better-auth@1.7.7(@sveltejs/kit@2.70.3(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.57.3)(vite@7.3.7(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))(svelte@5.57.3)(typescript@5.9.3)(vite@7.3.7(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))(next@16.4.3(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(svelte@5.57.3)(vue@3.5.45(typescript@5.9.3)))
+        specifier: ^0.1.2
+        version: 0.1.2(better-auth@1.7.7(@sveltejs/kit@2.70.3(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.57.3)(vite@7.3.7(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))(svelte@5.57.3)(typescript@5.9.3)(vite@7.3.7(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))(next@16.4.3(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(svelte@5.57.3)(vue@3.5.45(typescript@5.9.3)))
       better-auth:
         specifier: 1.7.7
         version: 1.7.7(@sveltejs/kit@2.70.3(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.57.3)(vite@7.3.7(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))(svelte@5.57.3)(typescript@5.9.3)(vite@7.3.7(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))(next@16.4.3(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(svelte@5.57.3)(vue@3.5.45(typescript@5.9.3))
@@ -1068,15 +1068,15 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  '@mockatoo/connect-authjs@0.1.1':
-    resolution: {integrity: sha512-iZ6SVEsKO76dpDaUFkPmJSjnpLlw+R01PKXu3fvs3TP3b27Rws4agcaZw6etI5Hl02TDxc/KXb8Jkt93kLCwTw==}
+  '@mockatoo/connect-authjs@0.1.2':
+    resolution: {integrity: sha512-m0yHj/6qA2gBaYLniUlrY+ndOjDOkNednhAi4ZHjuxBdetHpysEj8iP80b91IvlYdNazlSnNg3gPQRcI5lVf0g==}
     peerDependencies:
       next-auth: 5.0.0-beta.32
 
-  '@mockatoo/connect-better-auth@0.1.1':
-    resolution: {integrity: sha512-YY9YMCTOgJdCjnbpEGg1z0jCM9Kw3MQJtcQhQMZBsuqoy6nca4ZeScI5CJjqdJT2wXAyaNDmJXdYuZaH/GlY5g==}
+  '@mockatoo/connect-better-auth@0.1.2':
+    resolution: {integrity: sha512-ngP32t1ITMzgsdslzMClpbBYjJ15JmmHXIybQ/AqeHJtLpJPsomcAKPRXl8jb6D5YjbJBX6nkyg2uYmItEH35Q==}
     peerDependencies:
-      better-auth: 1.7.7
+      better-auth: ^1.7.7
 
   '@napi-rs/lzma-linux-x64-gnu@1.5.1':
     resolution: {integrity: sha512-oTXEIha4SsuXdTA4Iyskj0kpdx2yVXdhd75c2v3xGrHFfVMsbhTPZU/nMPL4sWKo4pBHm3aucLaqGlF696dTyQ==}
@@ -5764,11 +5764,11 @@ snapshots:
       - encoding
       - supports-color
 
-  '@mockatoo/connect-authjs@0.1.1(next-auth@5.0.0-beta.32(next@16.4.3(@babel/core@7.29.13)(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1))':
+  '@mockatoo/connect-authjs@0.1.2(next-auth@5.0.0-beta.32(next@16.4.3(@babel/core@7.29.13)(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1))':
     dependencies:
       next-auth: 5.0.0-beta.32(next@16.4.3(@babel/core@7.29.13)(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)
 
-  '@mockatoo/connect-better-auth@0.1.1(better-auth@1.7.7(@sveltejs/kit@2.70.3(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.57.3)(vite@7.3.7(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))(svelte@5.57.3)(typescript@5.9.3)(vite@7.3.7(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))(next@16.4.3(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(svelte@5.57.3)(vue@3.5.45(typescript@5.9.3)))':
+  '@mockatoo/connect-better-auth@0.1.2(better-auth@1.7.7(@sveltejs/kit@2.70.3(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.57.3)(vite@7.3.7(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))(svelte@5.57.3)(typescript@5.9.3)(vite@7.3.7(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))(next@16.4.3(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(svelte@5.57.3)(vue@3.5.45(typescript@5.9.3)))':
     dependencies:
       better-auth: 1.7.7(@sveltejs/kit@2.70.3(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.57.3)(vite@7.3.7(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))(svelte@5.57.3)(typescript@5.9.3)(vite@7.3.7(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))(next@16.4.3(@playwright/test@1.64.1)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(svelte@5.57.3)(vue@3.5.45(typescript@5.9.3))
 
