@@ -23,11 +23,12 @@ it("signs in with Google", () => {
 			const email = MOCKATOO_TEST_EMAIL as string;
 			const password = MOCKATOO_TEST_PASSWORD as string;
 			cy.origin(
-				Cypress.expose("MOCKATOO_URL"),
+				"https://app.mockatoo.globalunderdog.com",
 				{ args: { email, password } },
 				({ email, password }) => {
 					cy.get("#email").type(email);
-					cy.get("#password").type(`${password}{enter}`, { log: false });
+					cy.get("#password").type(password, { log: false });
+					cy.contains("button", "Log in with password").click();
 					cy.contains("button", "Authorize").click();
 				},
 			);

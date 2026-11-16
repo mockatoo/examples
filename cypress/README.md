@@ -60,12 +60,6 @@ pnpm --dir cypress test
 
 The test builds and starts the app in production mode on port 3000, then serves it through a local HTTPS proxy at `https://localhost:3443`. The proxy uses a bundled self-signed certificate; no certificate setup is needed. Both servers stop when the test finishes.
 
-The test uses the hosted Mockatoo service by default. To point it at your own Mockatoo instance, set `MOCKATOO_URL` before running the test:
-
-```sh
-MOCKATOO_URL=https://your-mockatoo.example.com pnpm --dir cypress test
-```
-
 To test your own app, change `baseUrl` in `cypress.config.ts` to its local URL and replace the `start-server-and-test` command in `package.json` with your app's start command. The test expects a Google sign-in button and the session heading shown by the Better Auth example.
 
 ## Why Cypress needs HTTPS

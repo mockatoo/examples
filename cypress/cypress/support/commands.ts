@@ -59,11 +59,12 @@ Cypress.Commands.add(
 					cy.visit("/");
 					cy.contains("button", `Sign in with ${provider}`).click();
 					cy.origin(
-						Cypress.expose("MOCKATOO_URL"),
+						"https://app.mockatoo.globalunderdog.com",
 						{ args: { address, password, consent } },
 						({ address, password, consent }) => {
 							cy.get("#email").type(address);
-							cy.get("#password").type(`${password}{enter}`, { log: false });
+							cy.get("#password").type(password, { log: false });
+							cy.contains("button", "Log in with password").click();
 							cy.contains("button", consent).click();
 						},
 					);
