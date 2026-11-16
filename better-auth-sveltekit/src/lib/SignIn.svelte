@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { invalidateAll } from "$app/navigation";
-	import { authClient } from "$lib/auth-client";
-	import { providers } from "$lib/providers";
-	import ProviderLogo from "$lib/ProviderLogo.svelte";
+	import { authClient } from "./auth-client";
+	import { providers } from "./providers";
+	import ProviderLogo from "./ProviderLogo.svelte";
 
 	let { signedIn = false, error }: { signedIn?: boolean; error?: string } = $props();
 	let pending = $state(false);

@@ -9,8 +9,8 @@ import {
 	mockTwitter,
 } from "@mockatoo/connect-better-auth";
 import { betterAuth } from "better-auth";
-import { dev } from "$app/environment";
-import { env } from "$env/dynamic/private";
+import { dev } from "$app/env";
+import * as env from "$app/env/private";
 
 if (!env.BETTER_AUTH_SECRET) {
 	throw new Error(
@@ -19,7 +19,7 @@ if (!env.BETTER_AUTH_SECRET) {
 }
 
 // Your app would switch on dev, so production uses the real providers:
-//   const useMock = dev;   // import { dev } from "$app/environment";
+//   const useMock = dev;   // import { dev } from "$app/env";
 // This demo also runs the mock in production on Vercel, where dev is
 // always false, so its committed .env sets MOCKATOO_FORCE=true.
 // Delete that line from .env before you ship.

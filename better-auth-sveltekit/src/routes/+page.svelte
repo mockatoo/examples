@@ -1,5 +1,5 @@
 <script lang="ts">
-	import SignIn from "$lib/SignIn.svelte";
+	import SignIn from "../lib/SignIn.svelte";
 	import type { PageData } from "./$types";
 	let { data }: { data: PageData } = $props();
 </script>

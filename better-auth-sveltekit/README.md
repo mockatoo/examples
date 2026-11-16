@@ -53,7 +53,7 @@ Deploy this directory to Vercel with the SvelteKit framework preset. Set `BETTER
 
 ## Apple and SvelteKit CSRF
 
-Apple returns to `/api/auth/callback/apple` with a cross-site form POST (`response_mode=form_post`). SvelteKit rejects cross-site form POSTs with `Cross-site POST form submissions are forbidden` before Better Auth sees the request, so `svelte.config.js` adds Apple's origin to `kit.csrf.trustedOrigins`: the Mockatoo origin while `MOCKATOO_FORCE=true`, and `https://appleid.apple.com` once it is removed. `pnpm dev` skips this check, so the error appears only in `pnpm build` output and deployments.
+Apple returns to `/api/auth/callback/apple` with a cross-site form POST (`response_mode=form_post`). SvelteKit rejects cross-site form POSTs with `Cross-site POST form submissions are forbidden` before Better Auth sees the request, so `vite.config.ts` adds Apple's origin to `sveltekit({ csrf: { trustedOrigins } })`: the Mockatoo origin while `MOCKATOO_FORCE=true`, and `https://appleid.apple.com` once it is removed. `pnpm dev` skips this check, so the error appears only in `pnpm build` output and deployments.
 
 ## Before production
 
