@@ -24,7 +24,7 @@ import { providers } from "./providers";
 // This demo also runs the mock in production on Vercel, where NODE_ENV is
 // always "production", so its committed .env sets MOCKATOO_FORCE=true.
 // Delete that line from .env before you ship.
-export function authConfig(useMock: boolean, origin?: string): AuthConfig {
+export function authConfig(useMock: boolean): AuthConfig {
 	const options = (index: number) => ({
 		authorization: { params: { scope: providers[index].scope } },
 	});
@@ -44,14 +44,14 @@ export function authConfig(useMock: boolean, origin?: string): AuthConfig {
 		pages: { signIn: "/", error: "/" },
 		providers: useMock
 			? [
-					MockApple({ origin, ...options(0) }),
-					MockGoogle({ origin, ...options(1) }),
-					MockGitHub({ origin, ...options(2) }),
-					MockDiscord({ origin, issuer: "https://discord.com", ...options(3) }),
-					MockFacebook({ origin, ...options(4) }),
-					MockLinkedIn({ origin, ...options(5) }),
-					MockMicrosoftEntraID({ origin, ...microsoft }),
-					MockTwitter({ origin, ...options(7) }),
+					MockApple({ ...options(0) }),
+					MockGoogle({ ...options(1) }),
+					MockGitHub({ ...options(2) }),
+					MockDiscord({ issuer: "https://discord.com", ...options(3) }),
+					MockFacebook({ ...options(4) }),
+					MockLinkedIn({ ...options(5) }),
+					MockMicrosoftEntraID(microsoft),
+					MockTwitter({ ...options(7) }),
 				]
 			: [
 					Apple({

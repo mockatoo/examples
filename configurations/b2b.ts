@@ -16,7 +16,7 @@ export function createB2bAuth({
 	tenantId = CUSTOMER_TENANT,
 }: {
 	baseURL: string;
-	mock?: { origin: string };
+	mock?: boolean;
 	/** A tenant ID, or `organizations` to admit any work account. */
 	tenantId?: string;
 }) {
@@ -42,12 +42,7 @@ export function createB2bAuth({
 		database: memoryAdapter(database),
 		advanced: { disableOriginCheck: false },
 		socialProviders: mock ? {} : { microsoft, google },
-		plugins: mock
-			? [
-					mockMicrosoft({ ...microsoft, origin: mock.origin }),
-					mockGoogle({ ...google, origin: mock.origin }),
-				]
-			: [],
+		plugins: mock ? [mockMicrosoft(microsoft), mockGoogle(google)] : [],
 	});
 	return { auth, database };
 }

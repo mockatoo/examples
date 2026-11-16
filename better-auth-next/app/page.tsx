@@ -1,3 +1,4 @@
+import { MOCKATOO_URL } from "@mockatoo/connect-better-auth";
 import { headers } from "next/headers";
 import { auth } from "../lib/auth";
 import SignIn from "./sign-in";
@@ -32,7 +33,7 @@ export default async function Page({
 						</pre>
 						<a
 							className="cta"
-							href="https://app.mockatoo.globalunderdog.com"
+							href={MOCKATOO_URL}
 							target="_blank"
 							rel="noopener noreferrer"
 						>

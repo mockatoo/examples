@@ -32,7 +32,7 @@ export function createAuthJsDbConfig({
 	mock,
 	googleTokenUrl = GOOGLE_TOKEN_URL,
 }: {
-	mock?: { origin: string };
+	mock?: boolean;
 	/** Where rotation refreshes Google tokens; the mock's when testing. */
 	googleTokenUrl?: string;
 }) {
@@ -46,7 +46,6 @@ export function createAuthJsDbConfig({
 		allowDangerousEmailAccountLinking: true,
 	};
 	const github = { allowDangerousEmailAccountLinking: true };
-	const origin = mock?.origin;
 
 	/** The user's stored Google account, which the adapter keys by provider. */
 	async function googleAccount(userId: string) {
@@ -63,11 +62,7 @@ export function createAuthJsDbConfig({
 		basePath: "/api/auth",
 		adapter: UnstorageAdapter(storage),
 		providers: mock
-			? [
-					MockGoogle({ ...google, origin }),
-					MockGitHub({ ...github, origin }),
-					MockMicrosoftEntraID({ origin }),
-				]
+			? [MockGoogle(google), MockGitHub(github), MockMicrosoftEntraID()]
 			: [Google(google), GitHub(github), MicrosoftEntraID],
 		callbacks: {
 			async session({ session, user }) {

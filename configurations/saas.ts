@@ -29,7 +29,7 @@ export type SaasOptions = {
 		text: string;
 	}) => Promise<void>;
 	/** Points the providers at Mockatoo instead of the real ones. */
-	mock?: { origin: string };
+	mock?: boolean;
 };
 
 export function createSaasAuth({
@@ -115,15 +115,15 @@ export function createSaasAuth({
 		plugins: mock
 			? [
 					// Lets developers and agents sign in with any Mockatoo account.
-					createMockatooPlugin({ origin: mock.origin }),
-					mockGoogle({ ...google, origin: mock.origin }),
-					mockGitHub({ ...github, origin: mock.origin }),
-					mockMicrosoft({ ...microsoft, origin: mock.origin }),
-					mockApple({ ...apple, origin: mock.origin }),
-					mockDiscord({ ...discord, origin: mock.origin }),
-					mockLinkedIn({ ...linkedin, origin: mock.origin }),
-					mockTwitter({ ...twitter, origin: mock.origin }),
-					mockFacebook({ ...facebook, origin: mock.origin }),
+					createMockatooPlugin(),
+					mockGoogle(google),
+					mockGitHub(github),
+					mockMicrosoft(microsoft),
+					mockApple(apple),
+					mockDiscord(discord),
+					mockLinkedIn(linkedin),
+					mockTwitter(twitter),
+					mockFacebook(facebook),
 				]
 			: [],
 	});

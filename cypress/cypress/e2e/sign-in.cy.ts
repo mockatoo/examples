@@ -1,3 +1,5 @@
+import { MOCKATOO_URL } from "@mockatoo/connect-better-auth";
+
 type Credentials = {
 	MOCKATOO_TEST_EMAIL?: string;
 	MOCKATOO_TEST_PASSWORD?: string;
@@ -23,7 +25,7 @@ it("signs in with Google", () => {
 			const email = MOCKATOO_TEST_EMAIL as string;
 			const password = MOCKATOO_TEST_PASSWORD as string;
 			cy.origin(
-				"https://app.mockatoo.globalunderdog.com",
+				MOCKATOO_URL,
 				{ args: { email, password } },
 				({ email, password }) => {
 					cy.get("#email").type(email);

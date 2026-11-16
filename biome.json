@@ -8,7 +8,7 @@
 	"files": {
 		"ignoreUnknown": false,
 		"includes": [
-			"**/*.{js,jsx,ts,tsx,json,jsonc}",
+			"**/*.{js,jsx,ts,tsx,json,jsonc,vue,svelte}",
 			"!!**/node_modules",
 			"!!**/.next",
 			"!!**/.nuxt",
@@ -57,5 +57,36 @@
 			}
 		}
 	},
-	"root": true
+	"root": true,
+	"overrides": [
+		{
+			"includes": [
+				"**",
+				"!oauth4webapi-hono/**"
+			],
+			"plugins": [
+				"./lint/no-mockatoo-url.grit"
+			]
+		},
+		{
+			"includes": [
+				"**/*.vue",
+				"**/*.svelte"
+			],
+			"formatter": {
+				"enabled": false
+			},
+			"assist": {
+				"enabled": false
+			},
+			"linter": {
+				"rules": {
+					"preset": "none",
+					"correctness": {
+						"noUnusedImports": "off"
+					}
+				}
+			}
+		}
+	]
 }

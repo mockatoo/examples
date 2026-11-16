@@ -15,7 +15,7 @@
 			<h1 class="session-title" id="title">Your session</h1>
 			<p class="email">{data.session.user.email}</p>
 			<pre class="session-json"><code>{JSON.stringify(data.session, null, 2)}</code></pre>
-			<a class="cta" href="https://app.mockatoo.globalunderdog.com" target="_blank" rel="noopener noreferrer">Explore Mockatoo</a>
+			<a class="cta" href={data.mockatooUrl} target="_blank" rel="noopener noreferrer">Explore Mockatoo</a>
 			<SignIn signedIn />
 		{:else}
 			<h1 id="title">Welcome back</h1>

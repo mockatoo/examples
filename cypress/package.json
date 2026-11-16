@@ -12,6 +12,7 @@
 	"devDependencies": {
 		"cypress": "16.2.0",
 		"local-ssl-proxy": "2.0.5",
-		"start-server-and-test": "3.0.13"
+		"start-server-and-test": "3.0.13",
+		"@mockatoo/connect-better-auth": "^0.3.0"
 	}
 }

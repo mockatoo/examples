@@ -1,3 +1,4 @@
+import { MOCKATOO_URL } from "@mockatoo/connect-authjs";
 import nextEnv from "@next/env";
 import { expect, test } from "@playwright/test";
 
@@ -41,7 +42,7 @@ for (const [provider, decision] of [
 		).toBeVisible();
 		await expect(
 			page.getByRole("link", { name: "Explore Mockatoo" }),
-		).toHaveAttribute("href", "https://app.mockatoo.globalunderdog.com");
+		).toHaveAttribute("href", MOCKATOO_URL);
 		await expect(
 			page.getByRole("link", { name: "Explore Mockatoo" }),
 		).toHaveAttribute("target", "_blank");

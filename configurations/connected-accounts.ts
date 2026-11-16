@@ -37,7 +37,7 @@ export function createConnectedAccountsAuth({
 	scopes = {},
 }: {
 	baseURL: string;
-	mock?: { origin: string };
+	mock?: boolean;
 	/** Off for apps that ask for offline access but not prompt=consent. */
 	consentEveryTime?: boolean;
 	/** Extra scopes per provider, in place of the app's usual ones. */
@@ -113,14 +113,14 @@ export function createConnectedAccountsAuth({
 				},
 		plugins: mock
 			? [
-					mockGoogle({ ...google, origin: mock.origin }),
-					mockGitHub({ ...github, origin: mock.origin }),
-					mockMicrosoft({ ...microsoft, origin: mock.origin }),
-					mockApple({ ...apple, origin: mock.origin }),
-					mockDiscord({ ...discord, origin: mock.origin }),
-					mockLinkedIn({ ...linkedin, origin: mock.origin }),
-					mockTwitter({ ...twitter, origin: mock.origin }),
-					mockFacebook({ ...facebook, origin: mock.origin }),
+					mockGoogle(google),
+					mockGitHub(github),
+					mockMicrosoft(microsoft),
+					mockApple(apple),
+					mockDiscord(discord),
+					mockLinkedIn(linkedin),
+					mockTwitter(twitter),
+					mockFacebook(facebook),
 				]
 			: [],
 	});

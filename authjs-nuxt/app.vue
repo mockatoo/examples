@@ -2,6 +2,7 @@
 import type { Session } from "@auth/core/types";
 import { providers } from "./lib/providers";
 
+const { mockatooUrl } = useRuntimeConfig().public;
 const route = useRoute();
 const { data: session } = await useFetch<Session | null>("/api/auth/session");
 const pending = ref(false);
@@ -41,7 +42,7 @@ async function submit(provider?: string) {
 				<h1 id="title" class="session-title">Your session</h1>
 				<p>{{ session.user.email || session.user.name }}</p>
 				<pre class="session-json"><code>{{ JSON.stringify(session, null, 2) }}</code></pre>
-				<a class="cta" href="https://app.mockatoo.globalunderdog.com" target="_blank" rel="noopener noreferrer">Explore Mockatoo</a>
+				<a class="cta" :href="mockatooUrl" target="_blank" rel="noopener noreferrer">Explore Mockatoo</a>
 				<form @submit.prevent="submit()">
 					<button class="secondary" :disabled="pending">Sign out</button>
 				</form>

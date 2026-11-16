@@ -1,3 +1,4 @@
+import { MOCKATOO_URL } from "@mockatoo/connect-better-auth";
 export type Provider =
 	| "Apple"
 	| "Google"
@@ -59,7 +60,7 @@ Cypress.Commands.add(
 					cy.visit("/");
 					cy.contains("button", `Sign in with ${provider}`).click();
 					cy.origin(
-						"https://app.mockatoo.globalunderdog.com",
+						MOCKATOO_URL,
 						{ args: { address, password, consent } },
 						({ address, password, consent }) => {
 							cy.get("#email").type(address);

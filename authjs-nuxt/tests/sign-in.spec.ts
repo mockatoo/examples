@@ -1,4 +1,5 @@
 import { existsSync } from "node:fs";
+import { MOCKATOO_URL } from "@mockatoo/connect-authjs";
 import { expect, test } from "@playwright/test";
 
 if (existsSync(".env.local")) process.loadEnvFile(".env.local");
@@ -41,7 +42,7 @@ for (const [provider, decision] of [
 		).toBeVisible();
 		await expect(
 			page.getByRole("link", { name: "Explore Mockatoo" }),
-		).toHaveAttribute("href", "https://app.mockatoo.globalunderdog.com");
+		).toHaveAttribute("href", MOCKATOO_URL);
 		await expect(
 			page.getByRole("link", { name: "Explore Mockatoo" }),
 		).toHaveAttribute("target", "_blank");

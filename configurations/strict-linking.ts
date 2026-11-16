@@ -23,7 +23,7 @@ export function createStrictLinkingAuth({
 	mock,
 }: {
 	baseURL: string;
-	mock?: { origin: string };
+	mock?: boolean;
 }) {
 	const inviteOnly = { disableImplicitSignUp: true };
 	const google = {
@@ -99,14 +99,14 @@ export function createStrictLinkingAuth({
 			admin(),
 			...(mock
 				? [
-						mockGoogle({ ...google, origin: mock.origin }),
-						mockGitHub({ ...github, origin: mock.origin }),
-						mockMicrosoft({ ...microsoft, origin: mock.origin }),
-						mockApple({ ...apple, origin: mock.origin }),
-						mockDiscord({ ...discord, origin: mock.origin }),
-						mockLinkedIn({ ...linkedin, origin: mock.origin }),
-						mockTwitter({ ...twitter, origin: mock.origin }),
-						mockFacebook({ ...facebook, origin: mock.origin }),
+						mockGoogle(google),
+						mockGitHub(github),
+						mockMicrosoft(microsoft),
+						mockApple(apple),
+						mockDiscord(discord),
+						mockLinkedIn(linkedin),
+						mockTwitter(twitter),
+						mockFacebook(facebook),
 					]
 				: []),
 		],

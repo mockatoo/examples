@@ -24,8 +24,6 @@ if (!env.BETTER_AUTH_SECRET) {
 // always false, so its committed .env sets MOCKATOO_FORCE=true.
 // Delete that line from .env before you ship.
 const useMock = dev || __MOCKATOO_FORCE__;
-// Optional origin override for Mockatoo's own tests; unset uses the hosted service.
-const origin = env.MOCKATOO_URL || undefined;
 
 export const auth = betterAuth({
 	baseURL: { allowedHosts: ["localhost:*", "*.vercel.app"] },
@@ -86,14 +84,14 @@ export const auth = betterAuth({
 			},
 	plugins: useMock
 		? [
-				mockApple({ origin }),
-				mockGoogle({ origin }),
-				mockGitHub({ origin }),
-				mockDiscord({ origin }),
-				mockFacebook({ origin }),
-				mockLinkedIn({ origin }),
-				mockMicrosoft({ origin }),
-				mockTwitter({ origin }),
+				mockApple(),
+				mockGoogle(),
+				mockGitHub(),
+				mockDiscord(),
+				mockFacebook(),
+				mockLinkedIn(),
+				mockMicrosoft(),
+				mockTwitter(),
 			]
 		: [],
 });

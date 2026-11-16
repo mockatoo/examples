@@ -20,23 +20,22 @@ export function createAuthJsJwtConfig({
 	mock,
 	microsoftIssuer = process.env.AUTH_MICROSOFT_ENTRA_ID_ISSUER,
 }: {
-	mock?: { origin: string };
+	mock?: boolean;
 	/** The Entra issuer, which names the app's tenant (`common` by default). */
 	microsoftIssuer?: string;
 }): AuthConfig {
-	const origin = mock?.origin;
 	return {
 		secret: "authjs-secret-at-least-thirty-two-characters",
 		trustHost: true,
 		basePath: "/api/auth",
 		providers: mock
 			? [
-					MockGoogle({ origin }),
-					MockGitHub({ origin }),
-					MockMicrosoftEntraID({ origin, issuer: microsoftIssuer }),
-					MockApple({ origin }),
+					MockGoogle(),
+					MockGitHub(),
+					MockMicrosoftEntraID({ issuer: microsoftIssuer }),
+					MockApple(),
 					// Lets developers and agents sign in with any Mockatoo account.
-					MockatooProvider({ origin }),
+					MockatooProvider(),
 				]
 			: [Google, GitHub, MicrosoftEntraID({ issuer: microsoftIssuer }), Apple],
 	};

@@ -25,8 +25,6 @@ if (!secret) {
 const useMock =
 	process.env.NODE_ENV !== "production" ||
 	process.env.MOCKATOO_FORCE === "true";
-// Optional origin override for Mockatoo's own tests; unset uses the hosted service.
-const origin = process.env.MOCKATOO_URL;
 
 export const auth = betterAuth({
 	baseURL: { allowedHosts: ["localhost:*", "*.vercel.app"] },
@@ -93,14 +91,14 @@ export const auth = betterAuth({
 			},
 	plugins: useMock
 		? [
-				mockApple({ origin }),
-				mockGoogle({ origin }),
-				mockGitHub({ origin }),
-				mockDiscord({ origin }),
-				mockFacebook({ origin }),
-				mockLinkedIn({ origin }),
-				mockMicrosoft({ origin }),
-				mockTwitter({ origin }),
+				mockApple(),
+				mockGoogle(),
+				mockGitHub(),
+				mockDiscord(),
+				mockFacebook(),
+				mockLinkedIn(),
+				mockMicrosoft(),
+				mockTwitter(),
 			]
 		: [],
 });

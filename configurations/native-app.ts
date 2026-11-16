@@ -16,7 +16,7 @@ export function createNativeAppAuth({
 	mock,
 }: {
 	baseURL: string;
-	mock?: { origin: string };
+	mock?: boolean;
 }) {
 	const apple = {
 		clientId: process.env.APPLE_SERVICE_ID ?? "",
@@ -45,11 +45,7 @@ export function createNativeAppAuth({
 		database: memoryAdapter(database),
 		socialProviders: mock ? {} : { apple, google, microsoft },
 		plugins: mock
-			? [
-					mockApple({ ...apple, origin: mock.origin }),
-					mockGoogle({ ...google, origin: mock.origin }),
-					mockMicrosoft({ ...microsoft, origin: mock.origin }),
-				]
+			? [mockApple(apple), mockGoogle(google), mockMicrosoft(microsoft)]
 			: [],
 	});
 	return { auth, database };

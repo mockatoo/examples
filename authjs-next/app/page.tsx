@@ -1,3 +1,4 @@
+import { MOCKATOO_URL } from "@mockatoo/connect-authjs";
 import { auth, signIn, signOut } from "../lib/auth";
 import { providers } from "../lib/providers";
 import { Button } from "./button";
@@ -42,7 +43,7 @@ export default async function Home({
 						</pre>
 						<a
 							className="cta"
-							href="https://app.mockatoo.globalunderdog.com"
+							href={MOCKATOO_URL}
 							target="_blank"
 							rel="noopener noreferrer"
 						>

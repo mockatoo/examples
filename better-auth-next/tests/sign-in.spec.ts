@@ -1,3 +1,4 @@
+import { MOCKATOO_URL } from "@mockatoo/connect-better-auth";
 import nextEnv from "@next/env";
 import { expect, test } from "@playwright/test";
 
@@ -36,7 +37,7 @@ for (const provider of [
 		).toBeVisible();
 		await expect(
 			page.getByRole("link", { name: "Explore Mockatoo" }),
-		).toHaveAttribute("href", "https://app.mockatoo.globalunderdog.com");
+		).toHaveAttribute("href", MOCKATOO_URL);
 		await expect(page.locator("pre code")).toContainText('"user"');
 		await expect(page.getByText("You are logged in")).toBeVisible();
 		await page.getByRole("button", { name: "Sign out" }).click();
