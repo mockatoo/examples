@@ -1,4 +1,4 @@
-it("gives each tagged address its own user", () => {
+it("signs in as a tagged address", () => {
 	cy.mockatooSignIn("Google", { tag: "cypress-1" }).then((address) => {
 		cy.sessionUser().its("email").should("equal", address);
 	});
