@@ -24,7 +24,16 @@
 
 # Cypress
 
-A Cypress sign-in test for the [Better Auth + Next.js example](../better-auth-next/). It starts that app, signs in through Mockatoo's Google flow, and checks the resulting session.
+Cypress sign-in tests for the [Better Auth + Next.js example](../better-auth-next/). They start that app, sign in through Mockatoo, and check the resulting session. The [Cypress guide](https://mockatoo.globalunderdog.com/docs/cypress) walks through each spec.
+
+| Spec | What it shows |
+| --- | --- |
+| [`sign-in.cy.ts`](cypress/e2e/sign-in.cy.ts) | The minimal Google sign-in with `cy.origin` |
+| [`all-providers.cy.ts`](cypress/e2e/all-providers.cy.ts) | All 8 providers with one custom command |
+| [`session.cy.ts`](cypress/e2e/session.cy.ts) | Signing in once with `cy.session` |
+| [`edge-cases.cy.ts`](cypress/e2e/edge-cases.cy.ts) | Tagged users, `+unverified`, `+down`, and Deny |
+
+The `cy.mockatooSignIn()`, `cy.mockatooSession()` and `cy.sessionUser()` commands are in [`cypress/support/commands.ts`](cypress/support/commands.ts).
 
 ## Run locally
 
