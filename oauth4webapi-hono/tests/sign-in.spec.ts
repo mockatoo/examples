@@ -14,7 +14,13 @@ test.beforeEach(() => {
 			"Set MOCKATOO_TEST_EMAIL and MOCKATOO_TEST_PASSWORD in .env.local or the environment.",
 		);
 });
-for (const provider of ["Google", "Apple", "Microsoft", "LinkedIn"]) {
+for (const provider of [
+	"Google",
+	"Apple",
+	"Microsoft",
+	"Discord",
+	"LinkedIn",
+]) {
 	for (const decision of ["Authorize", "Deny"] as const) {
 		test(`${provider}: ${decision}`, async ({ page }) => {
 			await page.goto("/");

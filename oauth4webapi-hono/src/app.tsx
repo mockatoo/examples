@@ -48,6 +48,14 @@ const providers = [
 		pkce: true,
 	},
 	{
+		id: "discord",
+		name: "Discord",
+		path: "/discord",
+		issuer: "https://discord.com",
+		scope: "openid identify email",
+		pkce: true,
+	},
+	{
 		id: "linkedin",
 		name: "LinkedIn",
 		path: "/linkedin/oauth",

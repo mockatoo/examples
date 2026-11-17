@@ -24,7 +24,7 @@
 
 # Hono + oauth4webapi
 
-A minimal framework example exercising raw OAuth/OIDC without an auth abstraction. `src/app.tsx` handles discovery, authorization code flow with PKCE, state and nonce validation, ID-token validation, and user info using oauth4webapi directly. Choose Google, Apple, Microsoft, or LinkedIn. The committed configuration uses each provider’s Mockatoo OIDC endpoint. The committed `.env` turns the mock on in production builds too; `pnpm dev` uses it either way. Hono renders one page through `src/page.tsx`, which holds the markup and styles. Signed, HttpOnly cookies hold short-lived OAuth state and a one-hour session; no database is needed. Tokens stay on the server and are discarded after user info is read.
+A minimal framework example exercising raw OAuth/OIDC without an auth abstraction. `src/app.tsx` handles discovery, authorization code flow with PKCE, state and nonce validation, ID-token validation, and user info using oauth4webapi directly. Choose Google, Apple, Microsoft, Discord, or LinkedIn. The committed configuration uses each provider’s Mockatoo OIDC endpoint. The committed `.env` turns the mock on in production builds too; `pnpm dev` uses it either way. Hono renders one page through `src/page.tsx`, which holds the markup and styles. Signed, HttpOnly cookies hold short-lived OAuth state and a one-hour session; no database is needed. Tokens stay on the server and are discarded after user info is read.
 
 Try the [live example](https://mockatoo-oauth4webapi-hono.vercel.app).
 
@@ -37,7 +37,7 @@ pnpm install
 pnpm dev
 ```
 
-Open http://localhost:3000. Run `pnpm exec playwright install chromium`, then `pnpm test` to check sign-in, session persistence, sign-out, and denied consent for all four providers.
+Open http://localhost:3000. Run `pnpm exec playwright install chromium`, then `pnpm test` to check sign-in, session persistence, sign-out, and denied consent for all five providers.
 
 ## Deploy
 
@@ -52,10 +52,11 @@ Delete `MOCKATOO_FORCE` from `.env`. Production then uses the real providers and
 | `google` | `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` | Register a Google web OAuth client. |
 | `apple` | `APPLE_CLIENT_ID`, `APPLE_CLIENT_SECRET` | Register a Services ID and HTTPS return URL. The secret is an Apple developer-signed client-secret JWT; rotate it before expiry. |
 | `microsoft` | `MICROSOFT_ISSUER`, `MICROSOFT_CLIENT_ID`, `MICROSOFT_CLIENT_SECRET` | Register an Entra web application. Use `https://login.microsoftonline.com/<tenant-GUID>/v2.0` as issuer. |
+| `discord` | `DISCORD_CLIENT_ID`, `DISCORD_CLIENT_SECRET` | Register a Discord OAuth2 application and its redirect URI. |
 | `linkedin` | `LINKEDIN_CLIENT_ID`, `LINKEDIN_CLIENT_SECRET` | Enable Sign In with LinkedIn using OpenID Connect. |
 
-Optional `GOOGLE_ISSUER`, `APPLE_ISSUER`, and `LINKEDIN_ISSUER` override their standard issuers. Microsoft deliberately uses a fixed tenant (a demo GUID under Mockatoo), so discovery and token issuer validation agree without accepting a tenant placeholder.
+Optional `GOOGLE_ISSUER`, `APPLE_ISSUER`, `DISCORD_ISSUER`, and `LINKEDIN_ISSUER` override their standard issuers. Microsoft deliberately uses a fixed tenant (a demo GUID under Mockatoo), so discovery and token issuer validation agree without accepting a tenant placeholder.
 
-Google and Microsoft use S256 PKCE. Apple and LinkedIn do not advertise PKCE; their confidential clients use state and client-secret authentication. LinkedIn’s flow does not request a nonce; the other three providers request and validate one. Apple uses `openid email name`, a `form_post` callback, and email from the validated ID token because it has no user-info endpoint. Its transaction cookie uses `SameSite=None; Secure` for the cross-site POST, which works on HTTPS and Chromium’s trusted localhost. The other providers use `openid profile email` and user info with subject validation. All providers validate the ID token signature, issuer, audience, and expiry.
+Google, Microsoft, and Discord use S256 PKCE. Apple and LinkedIn do not advertise PKCE; their confidential clients use state and client-secret authentication. LinkedIn’s flow does not request a nonce; the other four providers request and validate one. Apple uses `openid email name`, a `form_post` callback, and email from the validated ID token because it has no user-info endpoint. Its transaction cookie uses `SameSite=None; Secure` for the cross-site POST, which works on HTTPS and Chromium’s trusted localhost. Discord uses `openid identify email`; its ID token has no email, so the example reads it from user info after validating the subject. Google, Microsoft, and LinkedIn use `openid profile email` and user info with subject validation. All providers validate the ID token signature, issuer, audience, and expiry.
 
 Use HTTPS in production. Mockatoo is for development and testing, not production authentication.
