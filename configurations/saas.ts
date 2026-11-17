@@ -6,7 +6,6 @@
  * app's real configuration rather than one assembled for the test.
  */
 import {
-	createMockatooPlugin,
 	mockApple,
 	mockDiscord,
 	mockFacebook,
@@ -115,7 +114,6 @@ export function createSaasAuth({
 		plugins: mock
 			? [
 					// Lets developers and agents sign in with any Mockatoo account.
-					createMockatooPlugin(),
 					mockGoogle(google),
 					mockGitHub(github),
 					mockMicrosoft(microsoft),
