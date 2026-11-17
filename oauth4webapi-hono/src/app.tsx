@@ -3,6 +3,7 @@ import { Hono } from "hono";
 import { deleteCookie, getSignedCookie, setSignedCookie } from "hono/cookie";
 import * as oauth from "oauth4webapi";
 import { Page } from "./page.js";
+import { sessions } from "./session.js";
 
 const secret = process.env.SESSION_SECRET;
 if (!secret || secret.length < 32) {
@@ -10,6 +11,7 @@ if (!secret || secret.length < 32) {
 		"Set SESSION_SECRET to a random secret of at least 32 characters.",
 	);
 }
+const session = sessions(secret);
 // Your app would switch on NODE_ENV, so production uses the real providers:
 //   const useMock = process.env.NODE_ENV !== "production";
 // This demo also runs the mock in production on Vercel, where NODE_ENV is
@@ -91,6 +93,11 @@ const options =
 	["localhost", "127.0.0.1"].includes(new URL(origin).hostname)
 		? { [oauth.allowInsecureRequests]: true as const }
 		: {};
+// Apple and LinkedIn require the client secret in the form body.
+const clientAuth = (provider: (typeof providers)[number]) =>
+	provider.id === "apple" || provider.id === "linkedin"
+		? oauth.ClientSecretPost(provider.clientSecret)
+		: oauth.ClientSecretBasic(provider.clientSecret);
 const metadata = async (issuer: string) => {
 	const url = new URL(issuer);
 	return oauth.processDiscoveryResponse(
@@ -108,18 +115,15 @@ const cookieOptions = (url: string, maxAge: number) => ({
 });
 
 app.get("/", async (c) => {
-	const value = await getSignedCookie(c, secret, "session");
-	let email: string | undefined;
-	if (value) {
-		try {
-			const session = JSON.parse(value);
-			if (session.expires > Date.now() && typeof session.email === "string")
-				email = session.email;
-		} catch {
-			/* Invalid cookies render the signed-out page. */
-		}
-	}
-	return c.html(Page({ email, error: c.req.query("error"), providers }));
+	const { email } = (await session.get(c)) ?? {};
+	return c.html(
+		Page({
+			email,
+			error: c.req.query("error"),
+			revoked: c.req.query("revoked"),
+			providers,
+		}),
+	);
 });
 
 app.use("/sign-*", async (c, next) => {
@@ -198,7 +202,7 @@ app.on(["GET", "POST"], "/callback/:provider", async (c) => {
 		if (!provider) throw new Error("Invalid provider");
 		if ((provider.id === "apple") !== (c.req.method === "POST"))
 			throw new Error("Invalid response mode");
-		const { client, clientSecret } = provider;
+		const { client } = provider;
 		const server = await metadata(provider.issuer);
 		const callback =
 			c.req.method === "POST"
@@ -212,13 +216,10 @@ app.on(["GET", "POST"], "/callback/:provider", async (c) => {
 			callback,
 			transaction.state,
 		);
-		// Apple and LinkedIn require the client secret in the form body.
 		const response = await oauth.authorizationCodeGrantRequest(
 			server,
 			client,
-			provider.id === "apple" || provider.id === "linkedin"
-				? oauth.ClientSecretPost(clientSecret)
-				: oauth.ClientSecretBasic(clientSecret),
+			clientAuth(provider),
 			parameters,
 			new URL(`/callback/${provider.id}`, c.req.url).href,
 			provider.pkce ? transaction.verifier : oauth.nopkce,
@@ -257,12 +258,18 @@ app.on(["GET", "POST"], "/callback/:provider", async (c) => {
 			email = user.email;
 		}
 		if (typeof email !== "string") throw new Error("Missing email");
-		// Keep only the display identity in a signed, expiring session; discard tokens.
-		await setSignedCookie(
+		// Keep the display identity in an encrypted, expiring session. The access
+		// token is kept only to revoke it on sign-out, where the provider allows it.
+		await session.set(
 			c,
-			"session",
-			JSON.stringify({ email, expires: Date.now() + 3_600_000 }),
-			secret,
+			{
+				email,
+				provider: provider.id,
+				...(server.revocation_endpoint
+					? { accessToken: tokens.access_token }
+					: {}),
+				expires: Date.now() + 3_600_000,
+			},
 			cookieOptions(c.req.url, 3600),
 		);
 		return c.redirect("/");
@@ -270,8 +277,27 @@ app.on(["GET", "POST"], "/callback/:provider", async (c) => {
 		return c.redirect("/?error=callback");
 	}
 });
-app.post("/sign-out", (c) => {
+app.post("/sign-out", async (c) => {
+	const current = await session.get(c);
 	deleteCookie(c, "session", { path: "/" });
-	return c.redirect("/");
+	const provider = providers.find((item) => item.id === current?.provider);
+	if (!current?.accessToken || !provider) return c.redirect("/");
+	// Revoke the token so it stops working at the provider, not only here.
+	// The user is signed out locally either way.
+	try {
+		const server = await metadata(provider.issuer);
+		await oauth.processRevocationResponse(
+			await oauth.revocationRequest(
+				server,
+				provider.client,
+				clientAuth(provider),
+				current.accessToken,
+				options,
+			),
+		);
+		return c.redirect(`/?revoked=${provider.id}`);
+	} catch {
+		return c.redirect("/?error=sign-out");
+	}
 });
 export default app;

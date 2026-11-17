@@ -41,6 +41,8 @@ for (const provider of [
 				page.getByText(email as string, { exact: false }),
 			).toBeVisible();
 			await page.reload();
+			// Sign-out revokes the token where discovery advertises a revocation
+			// endpoint (Google, Apple), and reports a failed revocation in an alert.
 			await page.getByRole("button", { name: "Sign out", exact: true }).click();
 			await expect(
 				page.getByRole("button", {
@@ -48,6 +50,13 @@ for (const provider of [
 					exact: true,
 				}),
 			).toBeVisible();
+			await expect(page.getByRole("alert")).toHaveCount(0);
+			const status = page.getByRole("status");
+			if (provider === "Google" || provider === "Apple")
+				await expect(status).toHaveText(
+					`Signed out. Your ${provider} access token was revoked.`,
+				);
+			else await expect(status).toHaveCount(0);
 		});
 	}
 }

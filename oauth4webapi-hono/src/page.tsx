@@ -3,10 +3,14 @@ import { ProviderLogo } from "./provider-logo.js";
 type PageProps = {
 	email?: string;
 	error?: string;
+	/** The provider at which sign-out just revoked the access token. */
+	revoked?: string;
 	providers: { id: string; name: string }[];
 };
 
-export function Page({ email, error, providers }: PageProps) {
+export function Page({ email, error, revoked, providers }: PageProps) {
+	// Only a signed-out page confirms a revocation.
+	const revokedAt = !email && providers.find((item) => item.id === revoked);
 	return (
 		<html lang="en">
 			<head>
@@ -24,11 +28,23 @@ body{margin:0;background:#f4f5f2;color:#202a37;font:16px/1.6 system-ui}main{max-
 						Authorization code flow with PKCE and OpenID Connect, using the
 						protocol library directly.
 					</p>
-					{error && (
-						<p role="alert">
-							Sign-in failed. Authorization was declined or could not be
-							verified. Please try again.
+					{revokedAt && (
+						<p role="status">
+							Signed out. Your {revokedAt.name} access token was revoked.
 						</p>
+					)}
+					{error === "sign-out" ? (
+						<p role="alert">
+							Signed out, but the provider did not confirm that the access token
+							was revoked.
+						</p>
+					) : (
+						error && (
+							<p role="alert">
+								Sign-in failed. Authorization was declined or could not be
+								verified. Please try again.
+							</p>
+						)
 					)}
 					{email ? (
 						<>
