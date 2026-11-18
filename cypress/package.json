@@ -10,9 +10,10 @@
 		"typecheck": "tsc --noEmit"
 	},
 	"devDependencies": {
+		"@mockatoo/connect-better-auth": "^0.3.0",
 		"cypress": "16.2.0",
 		"local-ssl-proxy": "2.0.5",
 		"start-server-and-test": "3.0.13",
-		"@mockatoo/connect-better-auth": "^0.3.0"
+		"typescript": "^5.9.3"
 	}
 }

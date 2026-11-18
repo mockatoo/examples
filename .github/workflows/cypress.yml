@@ -17,8 +17,8 @@ jobs:
         with:
           node-version: 24
           cache: pnpm
-      # Install the root tools and this example only, not every example.
-      - run: pnpm install --frozen-lockfile --filter . --filter ./cypress
+      # Install the root tools, this example, and the app it tests (better-auth-next).
+      - run: pnpm install --frozen-lockfile --filter . --filter ./cypress --filter ./better-auth-next
       - run: pnpm exec biome check cypress
       - run: pnpm --dir cypress typecheck
       - name: Generate runtime secret
