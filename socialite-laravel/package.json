@@ -1,0 +1,21 @@
+{
+	"name": "@mockatoo/example-socialite-laravel",
+	"private": true,
+	"type": "module",
+	"engines": {
+		"node": "24"
+	},
+	"scripts": {
+		"dev": "php -S localhost:${PORT:-3000} -t public api/index.php",
+		"build": "composer install --no-interaction --prefer-dist --no-dev",
+		"start": "php -S localhost:${PORT:-3000} -t public api/index.php",
+		"lint": "composer validate --strict --no-check-publish && find api app bootstrap config routes -name '*.php' -not -path 'bootstrap/cache/*' -exec php -l {} + && php -l artisan",
+		"typecheck": "tsc --noEmit",
+		"test": "playwright test"
+	},
+	"devDependencies": {
+		"@playwright/test": "^1.64.1",
+		"@types/node": "^24.0.0",
+		"typescript": "^7.0.2"
+	}
+}
