@@ -20,6 +20,7 @@
   <a href="https://github.com/mockatoo/examples/actions/workflows/configurations.yml"><img src="https://github.com/mockatoo/examples/actions/workflows/configurations.yml/badge.svg" alt="Configurations"></a>
   <a href="https://github.com/mockatoo/examples/actions/workflows/cypress.yml"><img src="https://github.com/mockatoo/examples/actions/workflows/cypress.yml/badge.svg" alt="Cypress"></a>
   <a href="https://github.com/mockatoo/examples/actions/workflows/oauth4webapi-hono.yml"><img src="https://github.com/mockatoo/examples/actions/workflows/oauth4webapi-hono.yml/badge.svg" alt="oauth4webapi + Hono"></a>
+  <a href="https://github.com/mockatoo/examples/actions/workflows/spring-security-spring-boot.yml"><img src="https://github.com/mockatoo/examples/actions/workflows/spring-security-spring-boot.yml/badge.svg" alt="Spring Security + Spring Boot"></a>
 </p>
 
 <p align="center">
@@ -40,6 +41,7 @@ Example applications and authentication configurations for [Mockatoo](https://mo
 - [Better Auth + Next.js](better-auth-next/): cookie-based sessions with Better Auth’s provider-specific connectors.
 - [Better Auth + SvelteKit](better-auth-sveltekit/): cookie-based sessions with Better Auth’s provider-shaped Mockatoo connectors.
 - [Hono + oauth4webapi](oauth4webapi-hono/): minimal framework example exercising raw OAuth/OIDC without an auth abstraction.
+- [Spring Security + Spring Boot](spring-security-spring-boot/): sign-in with all eight providers through an opt-in Mockatoo profile and Spring Security’s built-in OAuth2 client.
 - [Authentication configurations](configurations/): Better Auth and Auth.js setups for SaaS, B2B, connected accounts, and other use cases.
 
 Use Node.js 24 and pnpm 10. Each example has its own README with setup and deployment instructions.

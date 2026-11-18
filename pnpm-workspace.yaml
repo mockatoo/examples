@@ -8,3 +8,4 @@ packages:
   - configurations
   - cypress
   - oauth4webapi-hono
+  - spring-security-spring-boot

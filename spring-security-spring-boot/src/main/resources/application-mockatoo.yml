@@ -1,0 +1,41 @@
+# Activate the mockatoo profile for development and browser tests.
+mockatoo.origin: ${MOCKATOO_URL:https://app.mockatoo.globalunderdog.com}
+
+spring:
+  security.oauth2.client:
+    registration:
+      google: &mock-client
+        client-id: mockatoo
+        client-secret: mockatoo-secret
+      microsoft: *mock-client
+      github: *mock-client
+      apple: *mock-client
+      discord: *mock-client
+      linkedin: *mock-client
+      x: *mock-client
+      facebook: *mock-client
+    provider:
+      google:
+        issuer-uri: ${mockatoo.origin}/google
+      microsoft:
+        issuer-uri: ${mockatoo.origin}/login.microsoftonline.com/00000000-0000-4000-8000-000000000001/v2.0
+      github:
+        authorization-uri: ${mockatoo.origin}/github/login/oauth/authorize
+        token-uri: ${mockatoo.origin}/github/login/oauth/access_token
+        user-info-uri: ${mockatoo.origin}/github/api/v3/user
+      apple:
+        issuer-uri: ${mockatoo.origin}/apple
+      discord:
+        authorization-uri: ${mockatoo.origin}/discord/oauth2/authorize
+        token-uri: ${mockatoo.origin}/discord/api/oauth2/token
+        user-info-uri: ${mockatoo.origin}/discord/api/users/@me
+      linkedin:
+        issuer-uri: ${mockatoo.origin}/linkedin/oauth
+      x:
+        authorization-uri: ${mockatoo.origin}/x/i/oauth2/authorize
+        token-uri: ${mockatoo.origin}/x/2/oauth2/token
+        user-info-uri: ${mockatoo.origin}/x/2/users/me?user.fields=confirmed_email
+      facebook:
+        authorization-uri: ${mockatoo.origin}/facebook/dialog/oauth
+        token-uri: ${mockatoo.origin}/facebook/graph/oauth/access_token
+        user-info-uri: ${mockatoo.origin}/facebook/graph/me?fields=id,name,email

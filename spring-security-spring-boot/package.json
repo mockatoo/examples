@@ -1,0 +1,20 @@
+{
+	"name": "@mockatoo/example-spring-security-spring-boot",
+	"private": true,
+	"type": "module",
+	"engines": {
+		"node": "24"
+	},
+	"scripts": {
+		"dev": "mvn spring-boot:run -Dspring-boot.run.profiles=mockatoo",
+		"build": "mvn -B package",
+		"start": "java -jar target/spring-boot-example-0.0.1-SNAPSHOT.jar",
+		"typecheck": "tsc --noEmit",
+		"test": "playwright test"
+	},
+	"devDependencies": {
+		"@playwright/test": "^1.64.1",
+		"@types/node": "^24.0.0",
+		"typescript": "^5.9.2"
+	}
+}

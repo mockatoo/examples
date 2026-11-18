@@ -1,0 +1,33 @@
+name: Spring Security + Spring Boot
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  playwright:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: maven
+          cache-dependency-path: spring-security-spring-boot/pom.xml
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.15.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      # Install only the root tools (Biome) and this example, not every example.
+      - run: pnpm install --frozen-lockfile --filter . --filter ./spring-security-spring-boot
+      - run: pnpm exec biome check spring-security-spring-boot
+      - run: pnpm --dir spring-security-spring-boot typecheck
+      - run: pnpm --dir spring-security-spring-boot exec playwright install --with-deps chromium
+      - run: pnpm --dir spring-security-spring-boot test
+        env:
+          MOCKATOO_TEST_EMAIL: ${{ secrets.MOCKATOO_TEST_EMAIL }}
+          MOCKATOO_TEST_PASSWORD: ${{ secrets.MOCKATOO_TEST_PASSWORD }}
