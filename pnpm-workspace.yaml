@@ -1,4 +1,5 @@
 packages:
+  - authlib-flask
   - authjs-next
   - authjs-nuxt
   - authjs-remix

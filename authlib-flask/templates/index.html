@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mockatoo Authlib Flask Example</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script defer src="{{ url_for('static', filename='forms.js') }}"></script>
+</head>
+<body>
+  <main>
+    <section class="card">
+      <a class="brand" href="https://github.com/mockatoo/examples/tree/main/authlib-flask">
+        <span class="brand-logo" aria-hidden="true"></span>
+        Mockatoo Authlib Flask Example
+      </a>
+      {% if user %}
+        <p class="signed-in">You are logged in</p>
+        <h1 class="session-title">Your session</h1>
+        <pre class="session-json"><code>{{ user | tojson(indent=2) }}</code></pre>
+        <a class="cta" href="{{ mock_origin }}" target="_blank" rel="noopener noreferrer">Explore Mockatoo</a>
+        <form method="post" action="{{ url_for('sign_out') }}">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <button type="submit" class="secondary">Sign out</button>
+        </form>
+      {% else %}
+        <h1>Welcome back</h1>
+        <p>Please sign in with one of the providers below. We will request access to your basic profile and email where available.</p>
+        {% if error %}
+          <p role="alert" class="error">Sign-in failed. Authorization was declined or could not be verified. Please try again.</p>
+        {% endif %}
+        <div class="providers">
+          {% for provider, label in providers.items() %}
+          <form class="provider" method="post" action="{{ url_for('sign_in') }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input type="hidden" name="provider" value="{{ provider }}">
+            <button type="submit">
+              {% include "provider-logo.html" %}
+              Sign in with {{ label }}
+            </button>
+          </form>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </section>
+  </main>
+</body>
+</html>

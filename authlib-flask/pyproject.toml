@@ -1,0 +1,16 @@
+[project]
+name = "authlib-flask"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "Authlib>=1.7,<2",
+    "Flask>=3.1,<4",
+    "Flask-WTF>=1.2,<2",
+    "gunicorn>=23,<27",
+    "joserfc>=1.6,<2",
+    "python-dotenv>=1.1,<2",
+    "requests>=2.32,<3",
+]
+
+[dependency-groups]
+dev = ["ruff>=0.15,<0.17"]

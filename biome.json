@@ -10,6 +10,7 @@
 		"includes": [
 			"**/*.{js,jsx,ts,tsx,json,jsonc,vue,svelte}",
 			"!!**/node_modules",
+			"!!**/.venv",
 			"!!**/.next",
 			"!!**/.nuxt",
 			"!!**/.output",
