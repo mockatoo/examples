@@ -7,7 +7,7 @@
 	},
 	"packageManager": "pnpm@10.15.0",
 	"scripts": {
-		"lint": "biome check socialite-laravel authlib-flask oauth4webapi-hono authjs-nuxt authjs-remix authjs-sveltekit authjs-next better-auth-next better-auth-sveltekit configurations cypress spring-security-spring-boot package.json",
+		"lint": "biome check socialite-laravel authlib-flask allauth-django oauth4webapi-hono authjs-nuxt authjs-remix authjs-sveltekit authjs-next better-auth-next better-auth-sveltekit configurations cypress spring-security-spring-boot package.json",
 		"typecheck": "pnpm -r typecheck",
 		"build": "pnpm -r build",
 		"dev": "pnpm --dir better-auth-next dev"

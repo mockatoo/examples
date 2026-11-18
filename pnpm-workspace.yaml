@@ -1,6 +1,7 @@
 packages:
   - authlib-flask
   - socialite-laravel
+  - allauth-django
   - authjs-next
   - authjs-nuxt
   - authjs-remix

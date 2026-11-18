@@ -1,0 +1,48 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mockatoo Django allauth Example</title>
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <script defer src="{% static 'forms.js' %}"></script>
+</head>
+<body>
+  <main>
+    <section class="card">
+      <a class="brand" href="https://github.com/mockatoo/examples/tree/main/allauth-django">
+        <span class="brand-logo" aria-hidden="true"></span>
+        Mockatoo Django allauth Example
+      </a>
+      {% if user.is_authenticated %}
+        <p class="signed-in">You are logged in</p>
+        <h1 class="session-title">Your session</h1>
+        <pre class="session-json"><code>{{ identity }}</code></pre>
+        <a class="cta" href="{{ mock_origin }}" target="_blank" rel="noopener noreferrer">Explore Mockatoo</a>
+        <form method="post" action="{% url 'account_logout' %}">
+          {% csrf_token %}
+          <button type="submit" class="secondary">Sign out</button>
+        </form>
+      {% else %}
+        <h1>Welcome back</h1>
+        <p>Please sign in with one of the providers below. We will request access to your basic profile and email where available.</p>
+        {% if request.GET.error == "sign-in" %}
+          <p role="alert" class="error">Sign-in failed. Authorization was declined or could not be verified. Please try again.</p>
+        {% endif %}
+        <div class="providers">
+          {% for provider, label, login_url in providers %}
+          <form class="provider" method="post" action="{{ login_url }}">
+            {% csrf_token %}
+            <button type="submit">
+              {% include "provider-logo.html" with provider=provider only %}
+              Sign in with {{ label }}
+            </button>
+          </form>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </section>
+  </main>
+</body>
+</html>

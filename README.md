@@ -23,6 +23,7 @@
   <a href="https://github.com/mockatoo/examples/actions/workflows/spring-security-spring-boot.yml"><img src="https://github.com/mockatoo/examples/actions/workflows/spring-security-spring-boot.yml/badge.svg" alt="Spring Security + Spring Boot"></a>
   <a href="https://github.com/mockatoo/examples/actions/workflows/authlib-flask.yml"><img src="https://github.com/mockatoo/examples/actions/workflows/authlib-flask.yml/badge.svg" alt="Authlib + Flask"></a>
   <a href="https://github.com/mockatoo/examples/actions/workflows/socialite-laravel.yml"><img src="https://github.com/mockatoo/examples/actions/workflows/socialite-laravel.yml/badge.svg" alt="Laravel + Socialite"></a>
+  <a href="https://github.com/mockatoo/examples/actions/workflows/allauth-django.yml"><img src="https://github.com/mockatoo/examples/actions/workflows/allauth-django.yml/badge.svg" alt="Django + allauth"></a>
 </p>
 
 <p align="center">
@@ -46,6 +47,7 @@ Example applications and authentication configurations for [Mockatoo](https://mo
 - [Spring Security + Spring Boot](spring-security-spring-boot/): sign-in with all eight providers through an opt-in Mockatoo profile and Spring Security’s built-in OAuth2 client.
 - [Flask + Authlib](authlib-flask/): Sign-in with eight providers using the same Authlib clients for real and mock endpoints.
 - [Laravel + Socialite](socialite-laravel/): Sign-in with eight providers using Socialite and encrypted cookie sessions.
+- [Django + allauth](allauth-django/): Sign-in with eight providers using Django’s SQLite database and allauth’s OAuth and OpenID Connect adapters.
 - [Authentication configurations](configurations/): Better Auth and Auth.js setups for SaaS, B2B, connected accounts, and other use cases.
 
 Use Node.js 24 and pnpm 10. Each example has its own README with setup and deployment instructions.
