@@ -1,0 +1,37 @@
+{
+	"name": "@mockatoo/example-authjs-sveltekit",
+	"private": true,
+	"type": "module",
+	"engines": {
+		"node": "24"
+	},
+	"imports": {
+		"#lib/*": "./src/lib/*"
+	},
+	"scripts": {
+		"dev": "vite dev --host 0.0.0.0 --port ${PORT:-3000}",
+		"build": "vite build",
+		"start": "vite preview --host 0.0.0.0 --port ${PORT:-3000}",
+		"preview": "vite preview --port ${PORT:-3000} --strictPort",
+		"typecheck": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"test": "playwright test"
+	},
+	"dependencies": {
+		"@auth/core": "0.41.3",
+		"@mockatoo/connect-authjs": "^0.2.1",
+		"@opentelemetry/api": "^1.9.0",
+		"@sveltejs/adapter-vercel": "^7.0.3",
+		"@sveltejs/kit": "^3.2.0",
+		"next-auth": "5.0.0-beta.32",
+		"svelte": "^5.57.3",
+		"vite": "^8.3.8"
+	},
+	"devDependencies": {
+		"@playwright/test": "^1.56.0",
+		"@sveltejs/vite-plugin-svelte": "^7.3.1",
+		"@types/node": "^24.0.0",
+		"@vitejs/plugin-basic-ssl": "^2.3.0",
+		"svelte-check": "^4.7.8",
+		"typescript": "^6.0.3"
+	}
+}
