@@ -17,7 +17,9 @@ jobs:
         with:
           node-version: 24
       - run: pnpm install --frozen-lockfile
-      - name: Generate Better Auth runtime secret
+      - run: pnpm exec biome check better-auth-next
+      - run: pnpm --dir better-auth-next typecheck
+      - name: Generate runtime secret
         run: echo "BETTER_AUTH_SECRET=$(openssl rand -base64 32)" >> "$GITHUB_ENV"
       - run: pnpm --dir better-auth-next exec playwright install --with-deps chromium
       - run: pnpm --dir better-auth-next test

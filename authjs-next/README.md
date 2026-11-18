@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/mockatoo/examples/actions/workflows/ci.yml"><img src="https://github.com/mockatoo/examples/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="https://github.com/mockatoo/examples/actions/workflows/authjs-next.yml"><img src="https://github.com/mockatoo/examples/actions/workflows/authjs-next.yml/badge.svg" alt="Auth.js + Next.js"></a>
 </p>
 
 <p align="center">

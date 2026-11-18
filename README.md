@@ -12,7 +12,13 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/mockatoo/examples/actions/workflows/ci.yml"><img src="https://github.com/mockatoo/examples/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="https://github.com/mockatoo/examples/actions/workflows/authjs-next.yml"><img src="https://github.com/mockatoo/examples/actions/workflows/authjs-next.yml/badge.svg" alt="Auth.js + Next.js"></a>
+  <a href="https://github.com/mockatoo/examples/actions/workflows/authjs-nuxt.yml"><img src="https://github.com/mockatoo/examples/actions/workflows/authjs-nuxt.yml/badge.svg" alt="Auth.js + Nuxt"></a>
+  <a href="https://github.com/mockatoo/examples/actions/workflows/better-auth-next.yml"><img src="https://github.com/mockatoo/examples/actions/workflows/better-auth-next.yml/badge.svg" alt="Better Auth + Next.js"></a>
+  <a href="https://github.com/mockatoo/examples/actions/workflows/better-auth-sveltekit.yml"><img src="https://github.com/mockatoo/examples/actions/workflows/better-auth-sveltekit.yml/badge.svg" alt="Better Auth + SvelteKit"></a>
+  <a href="https://github.com/mockatoo/examples/actions/workflows/configurations.yml"><img src="https://github.com/mockatoo/examples/actions/workflows/configurations.yml/badge.svg" alt="Configurations"></a>
+  <a href="https://github.com/mockatoo/examples/actions/workflows/cypress.yml"><img src="https://github.com/mockatoo/examples/actions/workflows/cypress.yml/badge.svg" alt="Cypress"></a>
+  <a href="https://github.com/mockatoo/examples/actions/workflows/oauth4webapi-hono.yml"><img src="https://github.com/mockatoo/examples/actions/workflows/oauth4webapi-hono.yml/badge.svg" alt="oauth4webapi + Hono"></a>
 </p>
 
 <p align="center">

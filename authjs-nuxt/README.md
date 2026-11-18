@@ -12,6 +12,10 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/mockatoo/examples/actions/workflows/authjs-nuxt.yml"><img src="https://github.com/mockatoo/examples/actions/workflows/authjs-nuxt.yml/badge.svg" alt="Auth.js + Nuxt"></a>
+</p>
+
+<p align="center">
   <a href="https://mockatoo.globalunderdog.com">Website</a> ·
   <a href="https://mockatoo.globalunderdog.com/docs">Documentation</a> ·
   <a href="https://github.com/mockatoo/connectors">Connectors</a> ·
