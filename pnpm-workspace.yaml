@@ -1,6 +1,7 @@
 packages:
   - authjs-next
   - authjs-nuxt
+  - authjs-remix
   - authjs-sveltekit
   - better-auth-next
   - better-auth-sveltekit

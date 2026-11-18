@@ -34,6 +34,7 @@
 Example applications and authentication configurations for [Mockatoo](https://mockatoo.globalunderdog.com).
 
 - [Auth.js + Nuxt 3](authjs-nuxt/): JWT sessions with Auth.js core and Nuxt server routes.
+- [Auth.js + Remix](authjs-remix/): JWT sessions with Auth.js Core and Remix resource routes.
 - [Auth.js + SvelteKit](authjs-sveltekit/): JWT sessions with Auth.js Core and SvelteKit server routes.
 - [Auth.js + Next.js](authjs-next/): JWT sessions with Auth.js.
 - [Better Auth + Next.js](better-auth-next/): cookie-based sessions with Better Auth’s provider-specific connectors.

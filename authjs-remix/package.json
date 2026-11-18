@@ -1,0 +1,47 @@
+{
+	"name": "@mockatoo/example-authjs-remix",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"engines": {
+		"node": "24"
+	},
+	"packageManager": "pnpm@10.15.0",
+	"scripts": {
+		"dev": "node --env-file-if-exists=.env.local node_modules/@remix-run/dev/dist/cli.js vite:dev --port 3000",
+		"build": "remix vite:build",
+		"start": "node --env-file-if-exists=.env.local node_modules/@remix-run/serve/dist/cli.js build/server/index.js",
+		"typecheck": "tsc --noEmit",
+		"test": "playwright test"
+	},
+	"dependencies": {
+		"@auth/core": "0.41.3",
+		"@mockatoo/connect-authjs": "^0.2.1",
+		"@remix-run/node": "2.16.7",
+		"@remix-run/react": "2.16.7",
+		"@remix-run/serve": "2.16.7",
+		"isbot": "^4",
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1"
+	},
+	"devDependencies": {
+		"@playwright/test": "^1.56.0",
+		"@remix-run/dev": "2.16.7",
+		"@types/node": "^24.0.0",
+		"@types/react": "^18.3.0",
+		"@types/react-dom": "^18.3.0",
+		"typescript": "^5.9.2",
+		"vite": "^6.4.0",
+		"@vercel/remix": "2.16.7-patch.1"
+	},
+	"pnpm": {
+		"overrides": {
+			"@remix-run/react>turbo-stream": "^3.2.1",
+			"@remix-run/server-runtime>turbo-stream": "^3.2.1",
+			"@remix-run/server-runtime>@remix-run/router": "1.23.3",
+			"@remix-run/react>@remix-run/router": "1.23.3",
+			"@remix-run/react>react-router": "6.30.4",
+			"@remix-run/react>react-router-dom": "6.30.4"
+		}
+	}
+}
