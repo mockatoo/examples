@@ -16,7 +16,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-      - run: pnpm install --frozen-lockfile
+          cache: pnpm
+      # Install the root tools and this example only, not every example.
+      - run: pnpm install --frozen-lockfile --filter . --filter ./oauth4webapi-hono
       - run: pnpm exec biome check oauth4webapi-hono
       - run: pnpm --dir oauth4webapi-hono typecheck
       - name: Generate runtime secret

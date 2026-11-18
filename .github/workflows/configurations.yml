@@ -16,6 +16,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-      - run: pnpm install --frozen-lockfile
+          cache: pnpm
+      # Install the root tools and this example only, not every example.
+      - run: pnpm install --frozen-lockfile --filter . --filter ./configurations
       - run: pnpm exec biome check configurations package.json
       - run: pnpm --dir configurations typecheck
