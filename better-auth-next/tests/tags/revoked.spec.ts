@@ -1,14 +1,26 @@
 import { expect, test } from "@playwright/test";
-import { createAddress, sessionUser, signIn } from "../helpers";
+
+const email = process.env.MOCKATOO_TEST_EMAIL ?? "";
+const password = process.env.MOCKATOO_TEST_PASSWORD ?? "";
 
 test("+revoked: reports a refresh failure after successful sign-in", async ({
 	page,
 }) => {
-	const address = createAddress("revoked");
+	const address = email.replace("@", `+e2e-${crypto.randomUUID()}.revoked@`);
 	// Revoked access affects refresh, not initial sign-in. Better Auth reports
 	// a refresh failure to the app without exposing Microsoft's provider error.
-	await signIn(page, "Microsoft", address);
-	expect((await sessionUser(page)).email).toBe(address);
+	await page.goto("/");
+	await page.getByRole("button", { name: "Sign in with Microsoft" }).click();
+	await page.getByLabel("Email", { exact: true }).fill(address);
+	await page.getByLabel("Password", { exact: true }).fill(password);
+	await page.getByRole("button", { name: "Log in with password" }).click();
+	await page.getByRole("button", { name: "Authorize" }).click();
+	await expect(page.getByRole("heading", { name: "Your session" })).toBeVisible(
+		{ timeout: 15_000 },
+	);
+	expect(
+		JSON.parse((await page.locator("pre code").textContent()) ?? "").user.email,
+	).toBe(address);
 	// Exercise the app's public auth API with the browser's session cookies.
 	const response = await page.request.post("/api/auth/refresh-token", {
 		data: { useAccountCookie: true },
@@ -21,5 +33,10 @@ test("+revoked: reports a refresh failure after successful sign-in", async ({
 	});
 	// Refresh failure alone does not end the app's cookie session.
 	await page.reload();
-	expect((await sessionUser(page)).email).toBe(address);
+	await expect(page.getByRole("heading", { name: "Your session" })).toBeVisible(
+		{ timeout: 15_000 },
+	);
+	expect(
+		JSON.parse((await page.locator("pre code").textContent()) ?? "").user.email,
+	).toBe(address);
 });
