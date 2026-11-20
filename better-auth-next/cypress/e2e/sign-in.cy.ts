@@ -1,4 +1,4 @@
-import { MOCKATOO_URL } from "@mockatoo/connect-better-auth";
+const mockatooUrl: string = Cypress.expose("mockatooUrl");
 
 type Credentials = {
 	MOCKATOO_TEST_EMAIL?: string;
@@ -11,7 +11,7 @@ beforeEach(() => {
 		({ MOCKATOO_TEST_EMAIL, MOCKATOO_TEST_PASSWORD }) => {
 			if (!MOCKATOO_TEST_EMAIL || !MOCKATOO_TEST_PASSWORD)
 				throw new Error(
-					"Set CYPRESS_MOCKATOO_TEST_EMAIL and CYPRESS_MOCKATOO_TEST_PASSWORD.",
+					"Set MOCKATOO_TEST_EMAIL and MOCKATOO_TEST_PASSWORD in .env.local or the environment.",
 				);
 		},
 	);
@@ -25,11 +25,17 @@ it("signs in with Google", () => {
 			const email = MOCKATOO_TEST_EMAIL as string;
 			const password = MOCKATOO_TEST_PASSWORD as string;
 			cy.origin(
-				MOCKATOO_URL,
+				mockatooUrl,
 				{ args: { email, password } },
 				({ email, password }) => {
-					cy.get("#email").type(email);
-					cy.get("#password").type(password, { log: false });
+					cy.get("#email").type(email, {
+						log: false,
+						parseSpecialCharSequences: false,
+					});
+					cy.get("#password").type(password, {
+						log: false,
+						parseSpecialCharSequences: false,
+					});
 					cy.contains("button", "Log in with password").click();
 					cy.contains("button", "Authorize").click();
 				},

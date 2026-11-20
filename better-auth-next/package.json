@@ -10,7 +10,9 @@
 		"build": "next build",
 		"start": "next start -p ${PORT:-3000}",
 		"typecheck": "tsc --noEmit",
-		"test": "playwright test"
+		"test": "playwright test",
+		"test:cypress": "START_SERVER_AND_TEST_INSECURE=1 start-server-and-test 'pnpm build && PORT=3000 pnpm start' http://localhost:3000 'local-ssl-proxy --source 3443 --target 3000' https://localhost:3443 'cypress run'",
+		"test:selenium": "start-server-and-test 'pnpm build && PORT=3000 pnpm start' http://localhost:3000 'node --test --test-concurrency=1 selenium/*.test.ts'"
 	},
 	"dependencies": {
 		"@mockatoo/connect-better-auth": "^0.3.0",
@@ -25,6 +27,11 @@
 		"@types/node": "^24.0.0",
 		"@types/react": "^19.0.0",
 		"@types/react-dom": "^19.0.0",
+		"@types/selenium-webdriver": "^4.35.7",
+		"cypress": "16.2.0",
+		"local-ssl-proxy": "2.0.5",
+		"selenium-webdriver": "^4.53.0",
+		"start-server-and-test": "3.0.13",
 		"typescript": "^7.0.2"
 	}
 }

@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/mockatoo/examples/actions/workflows/better-auth-next.yml"><img src="https://github.com/mockatoo/examples/actions/workflows/better-auth-next.yml/badge.svg" alt="Better Auth + Next.js"></a>
+  <a href="https://github.com/mockatoo/examples/actions/workflows/nextjs.yml"><img src="https://github.com/mockatoo/examples/actions/workflows/nextjs.yml/badge.svg" alt="Better Auth + Next.js"></a>
 </p>
 
 <p align="center">
@@ -38,14 +38,32 @@ MOCKATOO_TEST_EMAIL=<your Mockatoo test email>
 MOCKATOO_TEST_PASSWORD=<your Mockatoo test password>
 ```
 
-`MOCKATOO_TEST_EMAIL` and `MOCKATOO_TEST_PASSWORD` are only for Playwright tests. The committed `.env` turns the mock on in production builds too; `pnpm dev` uses it either way.
+`MOCKATOO_TEST_EMAIL` and `MOCKATOO_TEST_PASSWORD` are only for browser tests. The committed `.env` turns the mock on in production builds too; `pnpm dev` uses it either way.
 
 ```sh
 pnpm install
 pnpm dev
 ```
 
-Open http://localhost:3000. Run the browser test with `pnpm test` after installing Chromium using `pnpm exec playwright install chromium`.
+Open http://localhost:3000.
+
+## Browser tests
+
+Set `MOCKATOO_TEST_EMAIL` and `MOCKATOO_TEST_PASSWORD` in `.env.local` or export them in your shell. Keep the runtime secret from the local setup above. From this example's directory, run the suite you want:
+
+| Runner | First-time setup | Run |
+| --- | --- | --- |
+| Playwright | `pnpm exec playwright install chromium` | `pnpm test` |
+| Cypress | `pnpm exec cypress install` | `pnpm test:cypress` |
+| Selenium | Install Google Chrome. Selenium Manager resolves ChromeDriver. | `pnpm test:selenium` |
+
+Each runner can start its own production build. Stop your dev server first so port 3000 is free. Cypress also uses port 3443 for local HTTPS.
+
+The [Cypress specs](cypress/e2e/) show a minimal Google sign-in, all eight providers, session caching, and edge cases. The [Cypress guide](https://mockatoo.globalunderdog.com/docs/cypress) walks through them. The [Selenium specs](selenium/) cover the same scenarios, plus sign-out in the Google test. The [Selenium guide](https://mockatoo.globalunderdog.com/docs/selenium) walks through the WebDriver setup and cookie restoration.
+
+### Why Cypress needs HTTPS
+
+Better Auth uses Secure cookies in production, including the OAuth state cookie. Chromium accepts those cookies on HTTP localhost, but Cypress's server-side cookie jar drops them from HTTP requests. The test serves the app through a local HTTPS proxy at `https://localhost:3443` so the state cookie reaches the callback.
 
 ## Deploy
 
@@ -53,4 +71,4 @@ Deploy this directory to Vercel. Set `BETTER_AUTH_SECRET` in the Production and 
 
 ## Before production
 
-Mockatoo is for development and testing, not production authentication. Delete `MOCKATOO_FORCE` from `.env`. Production then uses the real providers and `pnpm dev` keeps the mock. The bundled Playwright test runs a production build, so run it with `MOCKATOO_FORCE=true pnpm test` after that. Register each OAuth application with its provider and use the callback URL `https://<your-domain>/api/auth/callback/<provider-id>`. Set the corresponding `*_CLIENT_ID` and `*_CLIENT_SECRET` deployment variables: `APPLE`, `GOOGLE`, `GITHUB`, `DISCORD`, `FACEBOOK`, `LINKEDIN`, `MICROSOFT`, and `TWITTER`. Apple requires its provider-specific signed client secret. Microsoft is configured for the `common` tenant. Configure only providers for which you have credentials, and remove unused providers and buttons.
+Mockatoo is for development and testing, not production authentication. Delete `MOCKATOO_FORCE` from `.env`. Production then uses the real providers and `pnpm dev` keeps the mock. After deleting the flag, prefix your browser test command with `MOCKATOO_FORCE=true`. Register each OAuth application with its provider and use the callback URL `https://<your-domain>/api/auth/callback/<provider-id>`. Set the corresponding `*_CLIENT_ID` and `*_CLIENT_SECRET` deployment variables: `APPLE`, `GOOGLE`, `GITHUB`, `DISCORD`, `FACEBOOK`, `LINKEDIN`, `MICROSOFT`, and `TWITTER`. Apple requires its provider-specific signed client secret. Microsoft is configured for the `common` tenant. Configure only providers for which you have credentials, and remove unused providers and buttons.

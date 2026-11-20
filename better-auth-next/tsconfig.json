@@ -17,7 +17,8 @@
 		],
 		"skipLibCheck": true,
 		"esModuleInterop": true,
-		"allowJs": true
+		"allowJs": true,
+		"allowImportingTsExtensions": true
 	},
 	"include": [
 		"next-env.d.ts",

@@ -9,6 +9,5 @@ packages:
   - better-auth-next
   - better-auth-sveltekit
   - configurations
-  - cypress
   - oauth4webapi-hono
   - spring-security-spring-boot
