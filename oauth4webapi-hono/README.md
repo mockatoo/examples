@@ -26,7 +26,7 @@
 
 A minimal framework example exercising raw OAuth/OIDC without an auth abstraction. `src/app.tsx` handles discovery, authorization code flow with PKCE, state and nonce validation, ID-token validation, and user info using oauth4webapi directly. Choose Google, Apple, Microsoft, Discord, or LinkedIn. The committed configuration uses each provider’s Mockatoo OIDC endpoint. The committed `.env` turns the mock on in production builds too; `pnpm dev` uses it either way. Hono renders one page through `src/page.tsx`, which holds the markup and styles. HttpOnly cookies hold short-lived signed OAuth state and a one-hour session encrypted with AES-GCM (`src/session.ts`); no database is needed. Tokens never reach the browser in readable form. For providers whose discovery document advertises a `revocation_endpoint` (Google and Apple), the session keeps the access token and sign-out revokes it with oauth4webapi's `revocationRequest`; other providers' tokens are discarded after user info is read.
 
-Try the [live example](https://mockatoo-oauth4webapi-hono.vercel.app).
+Try the [live example](https://mockatoo-oauth4webapi-hono.vercel.app). The [Hono guide](https://mockatoo.globalunderdog.com/docs/hono) walks through the setup.
 
 ## Run locally
 
