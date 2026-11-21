@@ -26,7 +26,7 @@
 
 A small SvelteKit sign-in app using Better Auth’s cookie session and Mockatoo’s simulated Apple, Google, GitHub, Discord, Facebook, LinkedIn, Microsoft, and X providers. Auth setup lives in `src/lib/auth.ts`; no database or in-memory auth state is used.
 
-Live demo: [Better Auth + SvelteKit](https://mockatoo-better-auth-sveltekit.vercel.app).
+Live demo: [Better Auth + SvelteKit](https://mockatoo-better-auth-sveltekit.vercel.app). The [SvelteKit guide](https://mockatoo.globalunderdog.com/docs/sveltekit) walks through the setup.
 
 ## Run locally
 

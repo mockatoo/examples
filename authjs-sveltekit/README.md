@@ -26,7 +26,7 @@
 
 A sign-in example using the default Auth.js JWT session strategy and Mockatoo’s simulated Apple, Google, GitHub, Discord, Facebook, LinkedIn, Microsoft, and X providers. OAuth state and the session are stored in cookies; there is no database or adapter. Auth configuration lives in `src/lib/auth.server.ts`.
 
-Try the [live example](https://mockatoo-authjs-sveltekit.vercel.app).
+Try the [live example](https://mockatoo-authjs-sveltekit.vercel.app). The [SvelteKit guide](https://mockatoo.globalunderdog.com/docs/sveltekit) walks through the setup.
 
 ## Run locally
 

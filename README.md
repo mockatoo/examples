@@ -40,7 +40,7 @@ Example applications and authentication configurations for [Mockatoo](https://mo
 - [Auth.js + SvelteKit](authjs-sveltekit/): JWT sessions with Auth.js Core and SvelteKit server routes.
 - [Auth.js + Next.js](authjs-next/): JWT sessions with Auth.js.
 - [Better Auth + Next.js](better-auth-next/): cookie-based sessions with Better Auth’s provider-specific connectors.
-- [Better Auth + SvelteKit](better-auth-sveltekit/): cookie-based sessions with Better Auth’s provider-shaped Mockatoo connectors.
+- [Better Auth + SvelteKit](better-auth-sveltekit/): cookie-based sessions with Better Auth’s provider-shaped Mockatoo connectors. For a new app, `npx sv add @mockatoo` ([`@mockatoo/sv`](https://github.com/mockatoo/sv)) sets up Better Auth with GitHub on the mock in one command; the [SvelteKit guide](https://mockatoo.globalunderdog.com/docs/sveltekit) covers both.
 - [Hono + oauth4webapi](oauth4webapi-hono/): minimal framework example exercising raw OAuth/OIDC without an auth abstraction.
 - [Spring Security + Spring Boot](spring-security-spring-boot/): sign-in with all eight providers through an opt-in Mockatoo profile and Spring Security’s built-in OAuth2 client.
 - [Flask + Authlib](authlib-flask/): Sign-in with eight providers using the same Authlib clients for real and mock endpoints.
