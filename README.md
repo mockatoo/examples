@@ -14,6 +14,7 @@
 <p align="center">
   <a href="https://github.com/mockatoo/examples/actions/workflows/nextjs.yml"><img src="https://github.com/mockatoo/examples/actions/workflows/nextjs.yml/badge.svg" alt="Next.js browser tests"></a>
   <a href="https://github.com/mockatoo/examples/actions/workflows/authjs-nuxt.yml"><img src="https://github.com/mockatoo/examples/actions/workflows/authjs-nuxt.yml/badge.svg" alt="Auth.js + Nuxt"></a>
+  <a href="https://github.com/mockatoo/examples/actions/workflows/nuxt-auth-utils-nuxt.yml"><img src="https://github.com/mockatoo/examples/actions/workflows/nuxt-auth-utils-nuxt.yml/badge.svg" alt="nuxt-auth-utils + Nuxt"></a>
   <a href="https://github.com/mockatoo/examples/actions/workflows/authjs-sveltekit.yml"><img src="https://github.com/mockatoo/examples/actions/workflows/authjs-sveltekit.yml/badge.svg" alt="Auth.js + SvelteKit"></a>
   <a href="https://github.com/mockatoo/examples/actions/workflows/better-auth-sveltekit.yml"><img src="https://github.com/mockatoo/examples/actions/workflows/better-auth-sveltekit.yml/badge.svg" alt="Better Auth + SvelteKit"></a>
   <a href="https://github.com/mockatoo/examples/actions/workflows/configurations.yml"><img src="https://github.com/mockatoo/examples/actions/workflows/configurations.yml/badge.svg" alt="Configurations"></a>
@@ -36,6 +37,7 @@
 Example applications and authentication configurations for [Mockatoo](https://mockatoo.globalunderdog.com).
 
 - [Auth.js + Nuxt 3](authjs-nuxt/): JWT sessions with Auth.js core and Nuxt server routes.
+- [nuxt-auth-utils + Nuxt 4](nuxt-auth-utils-nuxt/): sealed cookie sessions with nuxt-auth-utils' OAuth handlers pointed at the mock through runtime config.
 - [Auth.js + Remix](authjs-remix/): JWT sessions with Auth.js Core and Remix resource routes.
 - [Auth.js + SvelteKit](authjs-sveltekit/): JWT sessions with Auth.js Core and SvelteKit server routes.
 - [Auth.js + Next.js](authjs-next/): JWT sessions with Auth.js.

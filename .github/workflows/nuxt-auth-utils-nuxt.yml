@@ -1,0 +1,30 @@
+name: nuxt-auth-utils + Nuxt
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  playwright:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.15.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      # Install the root tools and this example only, not every example.
+      - run: pnpm install --frozen-lockfile --filter . --filter ./nuxt-auth-utils-nuxt
+      - run: pnpm exec biome check nuxt-auth-utils-nuxt
+      - run: pnpm --dir nuxt-auth-utils-nuxt typecheck
+      - name: Generate runtime secret
+        run: echo "NUXT_APP_SECRET=$(openssl rand -base64 32)" >> "$GITHUB_ENV"
+      - run: pnpm --dir nuxt-auth-utils-nuxt exec playwright install --with-deps chromium
+      - run: pnpm --dir nuxt-auth-utils-nuxt test
+        env:
+          MOCKATOO_TEST_EMAIL: ${{ secrets.MOCKATOO_TEST_EMAIL }}
+          MOCKATOO_TEST_PASSWORD: ${{ secrets.MOCKATOO_TEST_PASSWORD }}

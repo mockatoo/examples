@@ -1,0 +1,27 @@
+{
+	"name": "@mockatoo/example-nuxt-auth-utils-nuxt",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"engines": {
+		"node": "24"
+	},
+	"scripts": {
+		"dev": "node --env-file-if-exists=.env.local node_modules/nuxt/bin/nuxt.mjs dev",
+		"build": "nuxt build",
+		"start": "node .output/server/index.mjs",
+		"typecheck": "nuxt typecheck",
+		"test": "playwright test"
+	},
+	"dependencies": {
+		"nuxt": "^4.6.4",
+		"nuxt-auth-utils": "^0.6.2",
+		"vue": "^3.5.0"
+	},
+	"devDependencies": {
+		"@playwright/test": "^1.56.0",
+		"@types/node": "^24.0.0",
+		"typescript": "^5.9.2",
+		"vue-tsc": "^3.1.0"
+	}
+}

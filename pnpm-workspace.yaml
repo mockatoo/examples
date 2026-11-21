@@ -9,5 +9,6 @@ packages:
   - better-auth-next
   - better-auth-sveltekit
   - configurations
+  - nuxt-auth-utils-nuxt
   - oauth4webapi-hono
   - spring-security-spring-boot
