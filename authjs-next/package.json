@@ -16,13 +16,11 @@
 		"test:selenium": "start-server-and-test 'pnpm build && PORT=3000 pnpm start' http://localhost:3000 'node --test selenium/sign-in.test.ts'"
 	},
 	"dependencies": {
-		"@auth/unstorage-adapter": "2.11.3",
 		"@mockatoo/connect-authjs": "^0.2.0",
 		"next": "^16.4.6",
 		"next-auth": "5.0.0-beta.32",
 		"react": "^19.2.0",
-		"react-dom": "^19.2.0",
-		"unstorage": "^1.17.5"
+		"react-dom": "^19.2.0"
 	},
 	"devDependencies": {
 		"@next/env": "^16.4.6",

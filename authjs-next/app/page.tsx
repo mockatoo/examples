@@ -9,8 +9,6 @@ const errors: Record<string, string> = {
 		"The provider did not complete sign-in. You may have declined the authorization request, or the provider may have encountered an error.",
 	AccessDenied:
 		"Access to this account was denied. Check that you are allowed to sign in with this account.",
-	OAuthAccountNotLinked:
-		"This email is already associated with another sign-in method. Use the original provider to sign in.",
 	Configuration:
 		"Sign-in could not be completed. Please try again later or contact the site administrator if the problem continues.",
 	Verification:
