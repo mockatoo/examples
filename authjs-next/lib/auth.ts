@@ -1,3 +1,4 @@
+import { UnstorageAdapter } from "@auth/unstorage-adapter";
 import {
 	MockApple,
 	MockDiscord,
@@ -17,6 +18,7 @@ import Google from "next-auth/providers/google";
 import LinkedIn from "next-auth/providers/linkedin";
 import MicrosoftEntraID from "next-auth/providers/microsoft-entra-id";
 import Twitter from "next-auth/providers/twitter";
+import { createStorage } from "unstorage";
 import { providers } from "./providers";
 
 if (!process.env.AUTH_SECRET) {
@@ -98,6 +100,9 @@ async function refreshMicrosoftToken(refreshToken: string) {
 export const { handlers, auth, signIn, signOut } = NextAuth({
 	trustHost: true,
 	pages: { signIn: "/", error: "/" },
+	// Users and linked accounts live in memory, so a restart forgets them.
+	// Use your database's adapter in your app.
+	adapter: UnstorageAdapter(createStorage()),
 	session: { strategy: "jwt" },
 	providers: useMock
 		? [
