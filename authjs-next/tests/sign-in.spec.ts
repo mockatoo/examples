@@ -32,6 +32,9 @@ for (const [provider, decision] of [
 		await page.getByRole("button", { name: "Log in with password" }).click();
 		await page.getByRole("button", { name: decision }).click();
 		if (decision === "Deny") {
+			await expect(page).toHaveURL(
+				(url) => url.searchParams.get("error") === "OAuthCallbackError",
+			);
 			await expect(
 				page.getByRole("alert").filter({ hasText: /^Sign-in failed/ }),
 			).toContainText("You may have declined the authorization request");

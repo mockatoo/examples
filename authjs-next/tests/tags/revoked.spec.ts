@@ -39,4 +39,15 @@ test("+revoked: marks the session when refresh fails", async ({ page }) => {
 	expect(
 		JSON.parse((await page.locator("pre code").textContent()) ?? "").user.email,
 	).toBe(address);
+	// Signing in again starts a new session cookie without the error.
+	await page.getByRole("button", { name: "Sign out" }).click();
+	await page.getByRole("button", { name: "Sign in with Microsoft" }).click();
+	await page.getByLabel("Email", { exact: true }).fill(address);
+	await page.getByLabel("Password", { exact: true }).fill(password);
+	await page.getByRole("button", { name: "Log in with password" }).click();
+	await page.getByRole("button", { name: "Authorize" }).click();
+	await expect(page.getByRole("heading", { name: "Your session" })).toBeVisible(
+		{ timeout: 15_000 },
+	);
+	await expect(page.getByText("Microsoft access expired")).toBeHidden();
 });

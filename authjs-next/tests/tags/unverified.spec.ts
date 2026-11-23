@@ -25,3 +25,38 @@ test("+unverified: refuses an unverified email", async ({ page }) => {
 	).toBeVisible();
 	await expect(page.getByText("You are logged in")).toBeHidden();
 });
+
+test("+unverified: refuses LinkedIn's string flag", async ({ page }) => {
+	const address = email.replace("@", `+e2e-${crypto.randomUUID()}.unverified@`);
+	// LinkedIn sends email_verified as the string "false", which the
+	// signIn callback's string check refuses.
+	await page.goto("/");
+	await page.getByRole("button", { name: "Sign in with LinkedIn" }).click();
+	await page.getByLabel("Email", { exact: true }).fill(address);
+	await page.getByLabel("Password", { exact: true }).fill(password);
+	await page.getByRole("button", { name: "Log in with password" }).click();
+	await page.getByRole("button", { name: "Authorize" }).click();
+	await expect(page).toHaveURL(
+		(url) =>
+			url.pathname === "/" && url.searchParams.get("error") === "AccessDenied",
+	);
+	await expect(page.getByText("You are logged in")).toBeHidden();
+});
+
+test("+unverified: signs in on GitHub", async ({ page }) => {
+	const address = email.replace("@", `+e2e-${crypto.randomUUID()}.unverified@`);
+	// GitHub's profile has no email_verified claim, so the rule has nothing
+	// to refuse.
+	await page.goto("/");
+	await page.getByRole("button", { name: "Sign in with GitHub" }).click();
+	await page.getByLabel("Email", { exact: true }).fill(address);
+	await page.getByLabel("Password", { exact: true }).fill(password);
+	await page.getByRole("button", { name: "Log in with password" }).click();
+	await page.getByRole("button", { name: "Authorize" }).click();
+	await expect(page.getByRole("heading", { name: "Your session" })).toBeVisible(
+		{ timeout: 15_000 },
+	);
+	expect(
+		JSON.parse((await page.locator("pre code").textContent()) ?? "").user.email,
+	).toBe(address);
+});
