@@ -37,6 +37,12 @@ export default async function Home({
 				{session?.user ? (
 					<>
 						<p className="signed-in">You are logged in</p>
+						{session.error === "RefreshTokenError" && (
+							<p role="alert" className="error">
+								Microsoft access expired. Sign in with Microsoft again to
+								reconnect.
+							</p>
+						)}
 						<h1 className="session-title">Your session</h1>
 						<pre className="session-json">
 							<code>{JSON.stringify(session, null, 2)}</code>

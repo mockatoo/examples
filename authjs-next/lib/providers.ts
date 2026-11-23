@@ -8,7 +8,7 @@ export const providers = [
 	{
 		id: "microsoft-entra-id",
 		name: "Microsoft",
-		scope: "openid profile email",
+		scope: "openid profile email offline_access",
 	},
 	{ id: "twitter", name: "X", scope: "users.read tweet.read" },
 ] as const;

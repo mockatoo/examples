@@ -24,7 +24,15 @@
 
 # Auth.js + Next.js
 
-A sign-in example using the default Auth.js JWT session strategy and Mockatoo’s simulated Apple, Google, GitHub, Discord, Facebook, LinkedIn, Microsoft, and X providers. OAuth state and the session are stored in cookies; there is no database or adapter. Auth configuration lives in `lib/auth.ts`.
+A sign-in example using the Auth.js JWT session strategy and Mockatoo’s simulated Apple, Google, GitHub, Discord, Facebook, LinkedIn, Microsoft, and X providers. OAuth state and the session are stored in cookies. Users and their linked accounts are kept in memory by the [unstorage adapter](https://authjs.dev/getting-started/adapters/unstorage), so a restart forgets them; use your database's adapter in your app. Auth configuration lives in `lib/auth.ts`.
+
+The example also shows how Auth.js reports sign-in failures:
+
+- The `signIn` callback refuses an email the provider hasn't verified, which Auth.js reports as `?error=AccessDenied`.
+- Signing in with a second provider that returns the same email is refused with `?error=OAuthAccountNotLinked`.
+- The `jwt` callback refreshes the Microsoft access token, following Auth.js's [refresh token rotation guide](https://authjs.dev/guides/refresh-token-rotation). When the refresh fails, the session gets `error: "RefreshTokenError"` and the page asks the user to reconnect.
+
+The specs in `tests/tags` reproduce each failure with a [Mockatoo email tag](https://mockatoo.globalunderdog.com/docs/email-tags).
 
 Try the [live example](https://mockatoo-authjs-next.vercel.app). The [Next.js guide](https://mockatoo.globalunderdog.com/docs/nextjs) walks through the setup.
 
