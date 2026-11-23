@@ -24,7 +24,7 @@
 
 # Better Auth + Next.js
 
-A small App Router sign-in app using Better Auth’s cookie session and Mockatoo’s simulated Apple, Google, GitHub, Discord, Facebook, LinkedIn, Microsoft, and X providers. Auth setup lives in `lib/auth.ts`; no database or in-memory auth state is used.
+A small App Router sign-in app using Better Auth’s cookie session and Mockatoo’s simulated Apple, Google, GitHub, Discord, Facebook, LinkedIn, Microsoft, and X providers. Auth setup lives in `lib/auth.ts`. OAuth state and the session are stored in cookies. With no database configured, Better Auth keeps users and accounts in memory, so a restart forgets them; sign-in doesn't depend on them.
 
 Live demo: [Better Auth + Next.js](https://mockatoo-better-auth-next.vercel.app). The [Next.js guide](https://mockatoo.globalunderdog.com/docs/nextjs) walks through the setup.
 

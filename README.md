@@ -48,7 +48,7 @@ Example applications and authentication configurations for [Mockatoo](https://mo
 - [Flask + Authlib](authlib-flask/): Sign-in with eight providers using the same Authlib clients for real and mock endpoints.
 - [Laravel + Socialite](socialite-laravel/): Sign-in with eight providers using Socialite and encrypted cookie sessions.
 - [Django + allauth](allauth-django/): Sign-in with eight providers using Django’s SQLite database and allauth’s OAuth and OpenID Connect adapters.
-- [Authentication configurations](configurations/): Better Auth and Auth.js setups for SaaS, B2B, connected accounts, and other use cases.
+- [Authentication configurations](configurations/): Better Auth and Auth.js setups for SaaS, B2B, connected accounts, and other use cases. They keep users in memory for Mockatoo's own tests, so give them a real database before you copy one.
 
 Both Next.js examples include Playwright, Cypress, and Selenium tests.
 
