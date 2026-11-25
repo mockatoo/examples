@@ -58,7 +58,6 @@
 		}
 	},
 	"root": true,
-	"plugins": ["./lint/no-mockatoo-url.grit"],
 	"overrides": [
 		{
 			"includes": ["**/*.vue", "**/*.svelte"],
