@@ -3,10 +3,13 @@ on:
   push:
     branches: [main]
   pull_request:
+    paths:
+      - authlib-flask/**
+      - .github/workflows/authlib-flask.yml
 permissions:
   contents: read
 jobs:
-  playwright:
+  ci:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -17,17 +20,17 @@ jobs:
         with:
           node-version: 24
           cache: pnpm
+          cache-dependency-path: authlib-flask/pnpm-lock.yaml
       - uses: astral-sh/setup-uv@v7
         with:
           python-version: "3.12"
-      - run: pnpm install --frozen-lockfile --filter . --filter ./authlib-flask
-      - run: pnpm exec biome check authlib-flask
-      - run: pnpm --dir authlib-flask lint
-      - run: pnpm --dir authlib-flask typecheck
+      # The example is its own pnpm root, with its own lockfile.
+      - run: pnpm --dir authlib-flask install --frozen-lockfile
       - name: Generate runtime secret
         run: echo "FLASK_SECRET_KEY=$(openssl rand -base64 32)" >> "$GITHUB_ENV"
       - run: pnpm --dir authlib-flask exec playwright install --with-deps chromium
-      - run: pnpm --dir authlib-flask test
+      # Lint, typecheck and the browser tests, the same steps local-ci runs.
+      - run: pnpm --dir authlib-flask run ci
         env:
           MOCKATOO_TEST_EMAIL: ${{ secrets.MOCKATOO_TEST_EMAIL }}
           MOCKATOO_TEST_PASSWORD: ${{ secrets.MOCKATOO_TEST_PASSWORD }}

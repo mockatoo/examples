@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/mockatoo/examples/actions/workflows/nextjs.yml"><img src="https://github.com/mockatoo/examples/actions/workflows/nextjs.yml/badge.svg" alt="Better Auth + Next.js"></a>
+  <a href="https://github.com/mockatoo/examples/actions/workflows/better-auth-next.yml"><img src="https://github.com/mockatoo/examples/actions/workflows/better-auth-next.yml/badge.svg" alt="Better Auth + Next.js"></a>
 </p>
 
 <p align="center">
@@ -57,7 +57,7 @@ Set `MOCKATOO_TEST_EMAIL` and `MOCKATOO_TEST_PASSWORD` in `.env.local` or export
 | Cypress | `pnpm exec cypress install` | `pnpm test:cypress` |
 | Selenium | Install Google Chrome. Selenium Manager resolves ChromeDriver. | `pnpm test:selenium` |
 
-Each runner can start its own production build. Stop your dev server first so port 3000 is free. Cypress also uses port 3443 for local HTTPS.
+Each runner can start its own production build. Stop your dev server first so port 3000 is free, or set `PORT`. Cypress also uses port 3443 (`HTTPS_PORT`) for local HTTPS.
 
 The [Cypress specs](cypress/e2e/) show a minimal Google sign-in, all eight providers, session caching, and edge cases. The [Cypress guide](https://mockatoo.globalunderdog.com/docs/cypress) walks through them. The [Selenium specs](selenium/) cover the same scenarios, plus sign-out in the Google test. The [Selenium guide](https://mockatoo.globalunderdog.com/docs/selenium) walks through the WebDriver setup and cookie restoration.
 

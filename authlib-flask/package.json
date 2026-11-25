@@ -9,13 +9,16 @@
 		"dev": "uv run --locked flask run --debug --port ${PORT:-3000}",
 		"build": "uv sync --locked --no-dev",
 		"start": "uv run --locked --no-dev gunicorn --bind 127.0.0.1:${PORT:-3000} app:app",
-		"lint": "uv run --locked ruff check . && uv run --locked ruff format --check .",
+		"lint": "biome check . && uv run --locked ruff check . && uv run --locked ruff format --check .",
 		"typecheck": "tsc --noEmit",
-		"test": "playwright test"
+		"test": "playwright test",
+		"ci": "pnpm lint && pnpm typecheck && pnpm test"
 	},
 	"devDependencies": {
+		"@biomejs/biome": "^2.6.4",
 		"@playwright/test": "^1.64.1",
 		"@types/node": "^24.0.0",
 		"typescript": "^7.0.2"
-	}
+	},
+	"packageManager": "pnpm@10.15.0"
 }

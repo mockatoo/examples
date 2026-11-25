@@ -3,10 +3,13 @@ on:
   push:
     branches: [main]
   pull_request:
+    paths:
+      - socialite-laravel/**
+      - .github/workflows/socialite-laravel.yml
 permissions:
   contents: read
 jobs:
-  playwright:
+  ci:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -17,20 +20,19 @@ jobs:
         with:
           node-version: 24
           cache: pnpm
+          cache-dependency-path: socialite-laravel/pnpm-lock.yaml
       - uses: shivammathur/setup-php@v2
         with:
           php-version: "8.3"
           extensions: mbstring, dom, curl, zip
           tools: composer:v2
-      - run: pnpm install --frozen-lockfile --filter . --filter ./socialite-laravel
-      - run: pnpm exec biome check socialite-laravel
-      - run: pnpm --dir socialite-laravel build
-      - run: pnpm --dir socialite-laravel lint
-      - run: pnpm --dir socialite-laravel typecheck
+      # The example is its own pnpm root, with its own lockfile.
+      - run: pnpm --dir socialite-laravel install --frozen-lockfile
       - name: Generate runtime secret
         run: echo "APP_KEY=base64:$(openssl rand -base64 32)" >> "$GITHUB_ENV"
       - run: pnpm --dir socialite-laravel exec playwright install --with-deps chromium
-      - run: pnpm --dir socialite-laravel test
+      # Lint, typecheck and the browser tests, the same steps local-ci runs.
+      - run: pnpm --dir socialite-laravel run ci
         env:
           MOCKATOO_TEST_EMAIL: ${{ secrets.MOCKATOO_TEST_EMAIL }}
           MOCKATOO_TEST_PASSWORD: ${{ secrets.MOCKATOO_TEST_PASSWORD }}

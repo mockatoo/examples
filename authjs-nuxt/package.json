@@ -10,8 +10,10 @@
 		"dev": "node --env-file-if-exists=.env.local node_modules/nuxt/bin/nuxt.mjs dev",
 		"build": "nuxt build",
 		"start": "node .output/server/index.mjs",
+		"lint": "biome check .",
 		"typecheck": "nuxt typecheck",
-		"test": "playwright test"
+		"test": "playwright test",
+		"ci": "pnpm lint && pnpm typecheck && pnpm test"
 	},
 	"dependencies": {
 		"@auth/core": "0.41.3",
@@ -21,9 +23,11 @@
 		"vue": "^3.5.0"
 	},
 	"devDependencies": {
+		"@biomejs/biome": "^2.6.4",
 		"@playwright/test": "^1.56.0",
 		"@types/node": "^24.0.0",
 		"typescript": "^5.9.2",
 		"vue-tsc": "^3.1.0"
-	}
+	},
+	"packageManager": "pnpm@10.15.0"
 }

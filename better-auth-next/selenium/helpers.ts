@@ -4,7 +4,7 @@ import { Builder, By, until, type WebDriver } from "selenium-webdriver";
 import chrome from "selenium-webdriver/chrome.js";
 
 nextEnv.loadEnvConfig(process.cwd());
-export const appUrl = "http://localhost:3000";
+export const appUrl = `http://localhost:${process.env.PORT || "3000"}`;
 export const timeout = 15_000;
 export const button = (label: string) =>
 	By.xpath(`//button[normalize-space(.)="${label}"]`);

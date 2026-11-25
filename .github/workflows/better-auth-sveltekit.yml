@@ -3,10 +3,13 @@ on:
   push:
     branches: [main]
   pull_request:
+    paths:
+      - better-auth-sveltekit/**
+      - .github/workflows/better-auth-sveltekit.yml
 permissions:
   contents: read
 jobs:
-  playwright:
+  ci:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -17,14 +20,14 @@ jobs:
         with:
           node-version: 24
           cache: pnpm
-      # Install the root tools and this example only, not every example.
-      - run: pnpm install --frozen-lockfile --filter . --filter ./better-auth-sveltekit
-      - run: pnpm exec biome check better-auth-sveltekit
-      - run: pnpm --dir better-auth-sveltekit typecheck
+          cache-dependency-path: better-auth-sveltekit/pnpm-lock.yaml
+      # The example is its own pnpm root, with its own lockfile.
+      - run: pnpm --dir better-auth-sveltekit install --frozen-lockfile
       - name: Generate runtime secret
         run: echo "BETTER_AUTH_SECRET=$(openssl rand -base64 32)" >> "$GITHUB_ENV"
       - run: pnpm --dir better-auth-sveltekit exec playwright install --with-deps chromium
-      - run: pnpm --dir better-auth-sveltekit test
+      # Lint, typecheck and the browser tests, the same steps local-ci runs.
+      - run: pnpm --dir better-auth-sveltekit run ci
         env:
           MOCKATOO_TEST_EMAIL: ${{ secrets.MOCKATOO_TEST_EMAIL }}
           MOCKATOO_TEST_PASSWORD: ${{ secrets.MOCKATOO_TEST_PASSWORD }}

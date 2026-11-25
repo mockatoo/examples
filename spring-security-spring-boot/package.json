@@ -9,12 +9,16 @@
 		"dev": "mvn spring-boot:run -Dspring-boot.run.profiles=mockatoo",
 		"build": "mvn -B package",
 		"start": "java -jar target/spring-boot-example-0.0.1-SNAPSHOT.jar",
+		"lint": "biome check .",
 		"typecheck": "tsc --noEmit",
-		"test": "playwright test"
+		"test": "playwright test",
+		"ci": "pnpm lint && pnpm typecheck && pnpm test"
 	},
 	"devDependencies": {
+		"@biomejs/biome": "^2.6.4",
 		"@playwright/test": "^1.64.1",
 		"@types/node": "^24.0.0",
 		"typescript": "^5.9.2"
-	}
+	},
+	"packageManager": "pnpm@10.15.0"
 }

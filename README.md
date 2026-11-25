@@ -12,7 +12,8 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/mockatoo/examples/actions/workflows/nextjs.yml"><img src="https://github.com/mockatoo/examples/actions/workflows/nextjs.yml/badge.svg" alt="Next.js browser tests"></a>
+  <a href="https://github.com/mockatoo/examples/actions/workflows/better-auth-next.yml"><img src="https://github.com/mockatoo/examples/actions/workflows/better-auth-next.yml/badge.svg" alt="Better Auth + Next.js"></a>
+  <a href="https://github.com/mockatoo/examples/actions/workflows/authjs-next.yml"><img src="https://github.com/mockatoo/examples/actions/workflows/authjs-next.yml/badge.svg" alt="Auth.js + Next.js"></a>
   <a href="https://github.com/mockatoo/examples/actions/workflows/authjs-nuxt.yml"><img src="https://github.com/mockatoo/examples/actions/workflows/authjs-nuxt.yml/badge.svg" alt="Auth.js + Nuxt"></a>
   <a href="https://github.com/mockatoo/examples/actions/workflows/nuxt-auth-utils-nuxt.yml"><img src="https://github.com/mockatoo/examples/actions/workflows/nuxt-auth-utils-nuxt.yml/badge.svg" alt="nuxt-auth-utils + Nuxt"></a>
   <a href="https://github.com/mockatoo/examples/actions/workflows/authjs-sveltekit.yml"><img src="https://github.com/mockatoo/examples/actions/workflows/authjs-sveltekit.yml/badge.svg" alt="Auth.js + SvelteKit"></a>
@@ -54,6 +55,6 @@ Both Next.js examples include Playwright, Cypress, and Selenium tests.
 
 Use Node.js 24 and pnpm 10. Each example has its own README with setup and deployment instructions.
 
-Run `pnpm lint`, `pnpm typecheck`, and `pnpm build` to validate the examples.
+Each example is its own pnpm project, with its own lockfile and Biome config, so you can copy one folder on its own. To validate one, run `pnpm install` and `pnpm run ci` in its folder: lint, typecheck and its sign-in tests. The tests need a test account's `MOCKATOO_TEST_EMAIL` and `MOCKATOO_TEST_PASSWORD`, and use `PORT` (default 3000) for the app.
 Connector source, documentation, and the agent skill live in
 [mockatoo/connectors](https://github.com/mockatoo/connectors).

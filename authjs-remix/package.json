@@ -8,11 +8,13 @@
 	},
 	"packageManager": "pnpm@10.15.0",
 	"scripts": {
-		"dev": "node --env-file-if-exists=.env.local node_modules/@remix-run/dev/dist/cli.js vite:dev --port 3000",
+		"dev": "node --env-file-if-exists=.env.local node_modules/@remix-run/dev/dist/cli.js vite:dev --port ${PORT:-3000}",
 		"build": "remix vite:build",
 		"start": "node --env-file-if-exists=.env.local node_modules/@remix-run/serve/dist/cli.js build/server/index.js",
+		"lint": "biome check .",
 		"typecheck": "tsc --noEmit",
-		"test": "playwright test"
+		"test": "playwright test",
+		"ci": "pnpm lint && pnpm typecheck && pnpm test"
 	},
 	"dependencies": {
 		"@auth/core": "0.41.3",
@@ -25,23 +27,14 @@
 		"react-dom": "^18.3.1"
 	},
 	"devDependencies": {
+		"@biomejs/biome": "^2.6.4",
 		"@playwright/test": "^1.56.0",
 		"@remix-run/dev": "2.17.5",
 		"@types/node": "^24.0.0",
 		"@types/react": "^18.3.0",
 		"@types/react-dom": "^18.3.0",
+		"@vercel/remix": "2.16.7-patch.1",
 		"typescript": "^7.0.2",
-		"vite": "^6.4.0",
-		"@vercel/remix": "2.16.7-patch.1"
-	},
-	"pnpm": {
-		"overrides": {
-			"@remix-run/react>turbo-stream": "^3.2.1",
-			"@remix-run/server-runtime>turbo-stream": "^3.2.1",
-			"@remix-run/server-runtime>@remix-run/router": "1.23.3",
-			"@remix-run/react>@remix-run/router": "1.23.3",
-			"@remix-run/react>react-router": "6.30.4",
-			"@remix-run/react>react-router-dom": "6.30.4"
-		}
+		"vite": "^6.4.0"
 	}
 }

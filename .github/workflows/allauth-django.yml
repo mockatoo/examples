@@ -3,10 +3,13 @@ on:
   push:
     branches: [main]
   pull_request:
+    paths:
+      - allauth-django/**
+      - .github/workflows/allauth-django.yml
 permissions:
   contents: read
 jobs:
-  playwright:
+  ci:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -17,17 +20,17 @@ jobs:
         with:
           node-version: 24
           cache: pnpm
+          cache-dependency-path: allauth-django/pnpm-lock.yaml
       - uses: astral-sh/setup-uv@v7
         with:
           python-version: "3.12"
-      - run: pnpm install --frozen-lockfile --filter . --filter ./allauth-django
-      - run: pnpm exec biome check allauth-django
-      - run: pnpm --dir allauth-django lint
-      - run: pnpm --dir allauth-django typecheck
+      # The example is its own pnpm root, with its own lockfile.
+      - run: pnpm --dir allauth-django install --frozen-lockfile
       - name: Generate runtime secret
         run: echo "DJANGO_SECRET_KEY=$(openssl rand -base64 32)" >> "$GITHUB_ENV"
       - run: pnpm --dir allauth-django exec playwright install --with-deps chromium
-      - run: pnpm --dir allauth-django test
+      # Lint, typecheck and the browser tests, the same steps local-ci runs.
+      - run: pnpm --dir allauth-django run ci
         env:
           MOCKATOO_TEST_EMAIL: ${{ secrets.MOCKATOO_TEST_EMAIL }}
           MOCKATOO_TEST_PASSWORD: ${{ secrets.MOCKATOO_TEST_PASSWORD }}

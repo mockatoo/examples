@@ -1,0 +1,44 @@
+name: Auth.js + Next.js
+on:
+  push:
+    branches: [main]
+  pull_request:
+    paths:
+      - authjs-next/**
+      - .github/workflows/authjs-next.yml
+permissions:
+  contents: read
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.15.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: authjs-next/pnpm-lock.yaml
+      # The example is its own pnpm root, with its own lockfile.
+      - run: pnpm --dir authjs-next install --frozen-lockfile
+      - name: Generate runtime secret
+        run: echo "AUTH_SECRET=$(openssl rand -base64 32)" >> "$GITHUB_ENV"
+      - run: pnpm --dir authjs-next exec playwright install --with-deps chromium
+      - run: pnpm --dir authjs-next exec cypress install
+      # Lint, typecheck and the browser tests, the same steps local-ci runs.
+      - run: pnpm --dir authjs-next run ci
+        env:
+          MOCKATOO_TEST_EMAIL: ${{ secrets.MOCKATOO_TEST_EMAIL }}
+          MOCKATOO_TEST_PASSWORD: ${{ secrets.MOCKATOO_TEST_PASSWORD }}
+      - name: Upload Cypress artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-authjs-next
+          path: |
+            authjs-next/cypress/screenshots
+            authjs-next/cypress/videos
+          retention-days: 7

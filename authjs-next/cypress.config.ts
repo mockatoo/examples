@@ -12,7 +12,7 @@ export default defineConfig({
 		MOCKATOO_TEST_PASSWORD: process.env.MOCKATOO_TEST_PASSWORD,
 	},
 	e2e: {
-		baseUrl: "https://localhost:3443",
+		baseUrl: `https://localhost:${process.env.HTTPS_PORT || "3443"}`,
 		supportFile: false,
 	},
 });

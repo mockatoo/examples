@@ -3,10 +3,13 @@ on:
   push:
     branches: [main]
   pull_request:
+    paths:
+      - oauth4webapi-hono/**
+      - .github/workflows/oauth4webapi-hono.yml
 permissions:
   contents: read
 jobs:
-  playwright:
+  ci:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -17,14 +20,14 @@ jobs:
         with:
           node-version: 24
           cache: pnpm
-      # Install the root tools and this example only, not every example.
-      - run: pnpm install --frozen-lockfile --filter . --filter ./oauth4webapi-hono
-      - run: pnpm exec biome check oauth4webapi-hono
-      - run: pnpm --dir oauth4webapi-hono typecheck
+          cache-dependency-path: oauth4webapi-hono/pnpm-lock.yaml
+      # The example is its own pnpm root, with its own lockfile.
+      - run: pnpm --dir oauth4webapi-hono install --frozen-lockfile
       - name: Generate runtime secret
         run: echo "SESSION_SECRET=$(openssl rand -base64 32)" >> "$GITHUB_ENV"
       - run: pnpm --dir oauth4webapi-hono exec playwright install --with-deps chromium
-      - run: pnpm --dir oauth4webapi-hono test
+      # Lint, typecheck and the browser tests, the same steps local-ci runs.
+      - run: pnpm --dir oauth4webapi-hono run ci
         env:
           MOCKATOO_TEST_EMAIL: ${{ secrets.MOCKATOO_TEST_EMAIL }}
           MOCKATOO_TEST_PASSWORD: ${{ secrets.MOCKATOO_TEST_PASSWORD }}

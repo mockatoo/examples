@@ -1,10 +1,13 @@
 import { defineConfig } from "@playwright/test";
+
+const localURL = `http://localhost:${process.env.PORT || "3000"}`;
+
 export default defineConfig({
 	testDir: "./tests",
-	use: { baseURL: "http://localhost:3000" },
+	use: { baseURL: localURL },
 	webServer: {
 		command: "pnpm build && pnpm start",
-		url: "http://localhost:3000",
+		url: localURL,
 		timeout: 120000,
 		reuseExistingServer: false,
 	},

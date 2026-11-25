@@ -1,0 +1,1 @@
+# This example is its own pnpm root, so it installs from its own lockfile.

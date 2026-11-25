@@ -1,0 +1,8 @@
+# This example is its own pnpm root, so it installs from its own lockfile.
+overrides:
+  "@remix-run/react>turbo-stream": "^3.2.1"
+  "@remix-run/server-runtime>turbo-stream": "^3.2.1"
+  "@remix-run/server-runtime>@remix-run/router": "1.23.3"
+  "@remix-run/react>@remix-run/router": "1.23.3"
+  "@remix-run/react>react-router": "6.30.4"
+  "@remix-run/react>react-router-dom": "6.30.4"

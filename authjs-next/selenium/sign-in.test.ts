@@ -25,7 +25,7 @@ for (const decision of ["Authorize", "Deny"]) {
 			.build();
 
 		try {
-			await driver.get("http://localhost:3000");
+			await driver.get(`http://localhost:${process.env.PORT || "3000"}`);
 			await driver
 				.wait(until.elementLocated(button("Sign in with Google")), 15_000)
 				.click();

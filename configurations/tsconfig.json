@@ -1,5 +1,12 @@
 {
-	"extends": "../tsconfig.json",
-	"compilerOptions": { "noEmit": true },
+	"compilerOptions": {
+		"strict": true,
+		"skipLibCheck": true,
+		"target": "ES2022",
+		"module": "ESNext",
+		"moduleResolution": "Bundler",
+		"esModuleInterop": true,
+		"noEmit": true
+	},
 	"include": ["*.ts"]
 }

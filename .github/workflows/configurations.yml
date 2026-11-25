@@ -3,10 +3,13 @@ on:
   push:
     branches: [main]
   pull_request:
+    paths:
+      - configurations/**
+      - .github/workflows/configurations.yml
 permissions:
   contents: read
 jobs:
-  check:
+  ci:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -17,7 +20,8 @@ jobs:
         with:
           node-version: 24
           cache: pnpm
-      # Install the root tools and this example only, not every example.
-      - run: pnpm install --frozen-lockfile --filter . --filter ./configurations
-      - run: pnpm exec biome check configurations package.json
-      - run: pnpm --dir configurations typecheck
+          cache-dependency-path: configurations/pnpm-lock.yaml
+      # The example is its own pnpm root, with its own lockfile.
+      - run: pnpm --dir configurations install --frozen-lockfile
+      # Lint, typecheck and the browser tests, the same steps local-ci runs.
+      - run: pnpm --dir configurations run ci

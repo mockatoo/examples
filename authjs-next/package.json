@@ -10,10 +10,12 @@
 		"dev": "next dev -p ${PORT:-3000}",
 		"build": "next build",
 		"start": "next start -p ${PORT:-3000}",
+		"lint": "biome check .",
 		"typecheck": "tsc --noEmit",
 		"test": "playwright test",
-		"test:cypress": "START_SERVER_AND_TEST_INSECURE=1 start-server-and-test 'pnpm build && AUTH_URL=https://localhost:3443 PORT=3000 pnpm start' http://localhost:3000 'local-ssl-proxy --source 3443 --target 3000' https://localhost:3443 'cypress run'",
-		"test:selenium": "start-server-and-test 'pnpm build && PORT=3000 pnpm start' http://localhost:3000 'node --test selenium/sign-in.test.ts'"
+		"test:cypress": "START_SERVER_AND_TEST_INSECURE=1 start-server-and-test 'pnpm build && AUTH_URL=https://localhost:${HTTPS_PORT:-3443} pnpm start' http://localhost:${PORT:-3000} 'local-ssl-proxy --source ${HTTPS_PORT:-3443} --target ${PORT:-3000}' https://localhost:${HTTPS_PORT:-3443} 'cypress run'",
+		"test:selenium": "start-server-and-test 'pnpm build && pnpm start' http://localhost:${PORT:-3000} 'node --test selenium/sign-in.test.ts'",
+		"ci": "pnpm lint && pnpm typecheck && pnpm test && pnpm test:cypress && pnpm test:selenium"
 	},
 	"dependencies": {
 		"@mockatoo/connect-authjs": "^0.2.0",
@@ -23,6 +25,7 @@
 		"react-dom": "^19.2.0"
 	},
 	"devDependencies": {
+		"@biomejs/biome": "^2.6.4",
 		"@next/env": "^16.4.6",
 		"@playwright/test": "^1.56.0",
 		"@types/node": "^24.0.0",
@@ -34,5 +37,6 @@
 		"selenium-webdriver": "^4.53.0",
 		"start-server-and-test": "3.0.13",
 		"typescript": "^7.0.2"
-	}
+	},
+	"packageManager": "pnpm@10.15.0"
 }

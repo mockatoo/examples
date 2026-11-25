@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/mockatoo/examples/actions/workflows/nextjs.yml"><img src="https://github.com/mockatoo/examples/actions/workflows/nextjs.yml/badge.svg" alt="Auth.js + Next.js"></a>
+  <a href="https://github.com/mockatoo/examples/actions/workflows/authjs-next.yml"><img src="https://github.com/mockatoo/examples/actions/workflows/authjs-next.yml/badge.svg" alt="Auth.js + Next.js"></a>
 </p>
 
 <p align="center">
@@ -56,7 +56,7 @@ Set `MOCKATOO_TEST_EMAIL` and `MOCKATOO_TEST_PASSWORD` in `.env.local` or export
 | Cypress | `pnpm exec cypress install` | `pnpm test:cypress` |
 | Selenium | Install Google Chrome. Selenium Manager resolves ChromeDriver. | `pnpm test:selenium` |
 
-Each runner can start its own production build. Stop your dev server first so port 3000 is free. Cypress also uses port 3443 for local HTTPS. Its start command sets `AUTH_URL` to the proxy’s HTTPS URL so Auth.js sends the same callback URL in the authorization request and token exchange.
+Each runner can start its own production build. Stop your dev server first so port 3000 is free, or set `PORT`. Cypress also uses port 3443 (`HTTPS_PORT`) for local HTTPS. Its start command sets `AUTH_URL` to the proxy’s HTTPS URL so Auth.js sends the same callback URL in the authorization request and token exchange.
 
 ## Deploy
 
