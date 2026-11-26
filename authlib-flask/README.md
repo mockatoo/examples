@@ -26,7 +26,7 @@
 
 Sign in with Apple, Google, GitHub, Discord, Facebook, LinkedIn, Microsoft, or X. `providers.py` registers standard Authlib clients with real or Mockatoo endpoints. The routes in `app.py` use the same Authlib redirect and code exchange in either mode. Flask keeps the provider, account ID, and available email in a signed session cookie. Provider tokens are discarded after sign-in.
 
-Try the [live example](https://mockatoo-authlib-flask.vercel.app).
+Try the [live example](https://mockatoo-authlib-flask.vercel.app). The [Flask guide](https://mockatoo.globalunderdog.com/docs/flask) walks through the setup.
 
 ## Run locally
 

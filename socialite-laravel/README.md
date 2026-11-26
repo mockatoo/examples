@@ -26,6 +26,8 @@
 
 Sign in with Apple, Google, GitHub, Discord, Facebook, LinkedIn, Microsoft, or X. Laravel stores the provider, account ID, and available email in an encrypted cookie session. Provider tokens are discarded after sign-in.
 
+Try the [live example](https://mockatoo-socialite-laravel.vercel.app). The [Laravel guide](https://mockatoo.globalunderdog.com/docs/laravel) walks through the setup.
+
 ## Run locally
 
 Use PHP 8.3+, Composer 2, Node.js 24, and pnpm 10. From this directory:

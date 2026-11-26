@@ -26,6 +26,8 @@
 
 Sign in with Apple, Google, GitHub, Discord, Facebook, LinkedIn, Microsoft, or X. The Mockatoo switch in `example/settings.py` selects the provider subclasses and client credentials in `example/providers.py`. The subclasses point allauth at Mockatoo. LinkedIn and Microsoft use an OpenID Connect subclass that selects each provider’s discovery document. Microsoft gets the signed-in identity from the Entra ID token because allauth’s dedicated provider requires the Graph `/v1.0/me` endpoint. The mock X subclass reads `confirmed_email` from its profile. Real X sign-in uses allauth’s built-in provider, and the session shows the X username when email is unavailable. Allauth handles OAuth state, callbacks, Django sign-in, and sign-out.
 
+The [Django guide](https://mockatoo.globalunderdog.com/docs/django) walks through the setup.
+
 ## Run locally
 
 Use Python 3.12, uv, Node.js 24, and pnpm 10. Create `.env.local` with `DJANGO_SECRET_KEY` set to the output of `openssl rand -base64 48`.

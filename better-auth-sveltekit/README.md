@@ -26,7 +26,7 @@
 
 A small SvelteKit sign-in app using Better Auth’s cookie session and Mockatoo’s simulated Apple, Google, GitHub, Discord, Facebook, LinkedIn, Microsoft, and X providers. Auth setup lives in `src/lib/auth.ts`. OAuth state and the session are stored in cookies. With no database configured, Better Auth keeps users and accounts in memory, so a restart forgets them; sign-in doesn't depend on them.
 
-Live demo: [Better Auth + SvelteKit](https://mockatoo-better-auth-sveltekit.vercel.app). The [SvelteKit guide](https://mockatoo.globalunderdog.com/docs/sveltekit) walks through the setup.
+Try the [live example](https://mockatoo-better-auth-sveltekit.vercel.app). The [SvelteKit guide](https://mockatoo.globalunderdog.com/docs/sveltekit) walks through the setup.
 
 ## Run locally
 

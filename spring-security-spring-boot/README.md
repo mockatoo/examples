@@ -26,6 +26,8 @@
 
 This example uses Spring Boot and Spring Security's OAuth2 client to sign in with Google, Microsoft, GitHub, Apple, Discord, LinkedIn, X, and Facebook. The [Mockatoo profile](src/main/resources/application-mockatoo.yml) enables all eight [registrations](src/main/resources/application.yml) and supplies the shared test client credentials. It swaps the issuer for OpenID Connect providers and the authorization, token, and user-info endpoints for OAuth-only providers. Each registration keeps its scopes and callback at `/login/oauth2/code/{registrationId}`.
 
+The [Spring Boot guide](https://mockatoo.globalunderdog.com/docs/spring-boot) walks through the setup.
+
 ## Run locally
 
 Install Java 21 and Maven. Start the app with the Mockatoo profile:

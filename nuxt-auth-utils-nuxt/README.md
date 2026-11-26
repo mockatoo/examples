@@ -24,7 +24,9 @@
 
 # nuxt-auth-utils + Nuxt 4
 
-A sign-in example using [nuxt-auth-utils](https://github.com/atinux/nuxt-auth-utils) and Mockatoo's simulated Google, GitHub, Facebook, Microsoft, and X providers. OAuth state and the session are stored in sealed cookies; there is no database. The mock's endpoints live in `lib/oauth.ts`, and each provider has a route in `server/routes/auth/`. The [Nuxt guide](https://mockatoo.globalunderdog.com/docs/nuxt) walks through the setup.
+A sign-in example using [nuxt-auth-utils](https://github.com/atinux/nuxt-auth-utils) and Mockatoo's simulated Google, GitHub, Facebook, Microsoft, and X providers. OAuth state and the session are stored in sealed cookies; there is no database. The mock's endpoints live in `lib/oauth.ts`, and each provider has a route in `server/routes/auth/`.
+
+Try the [live example](https://mockatoo-nuxt-auth-utils-nuxt.vercel.app). The [Nuxt guide](https://mockatoo.globalunderdog.com/docs/nuxt) walks through the setup.
 
 nuxt-auth-utils has no Mockatoo connector, and doesn't need one: each provider handler reads its endpoints from `runtimeConfig.oauth`. Its Apple, Discord, and LinkedIn handlers fetch fixed provider URLs, so this example leaves them out.
 
